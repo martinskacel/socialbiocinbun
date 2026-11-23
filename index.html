@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Social Biography of a Pastry at the Fern</title>
+  <meta name="description" content="A student ethnography that follows one cinnamon bun from croissant scraps at King Arthur Baking to the Fern Cafe at Dartmouth College, told through the people whose lives it touches.">
+  <meta name="author" content="Martin Skacel">
+  <meta name="theme-color" content="#FBF6EE">
+
+  <!-- Link previews (iMessage, Slack, etc.). After you deploy, replace the image
+       path with the full URL, e.g.
+       https://martinskacel.github.io/pastry-biography/assets/images/hero-kaf-pastry-display.jpg -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="The Social Biography of a Pastry at the Fern">
+  <meta property="og:description" content="From croissant scraps at King Arthur Baking to a breakfast on the way to class.">
+  <meta property="og:image" content="assets/images/hero-kaf-pastry-display.jpg">
+
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+
+  <!-- Fonts: Fraunces (story text and headlines) + Hanken Grotesk (captions, labels, navigation) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Hanken+Grotesk:ital,wght@0,400..700;1,400..700&display=swap">
+
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Swaps "no-js" for "js" so animations only run when JavaScript is available -->
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <script src="js/main.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#prologue">Skip to the story</a>
+
+  <!-- =====================================================================
+       ROUTE NAVIGATION
+       Desktop: a vertical route on the left that tracks the bun.
+       Phones and tablets: a slim bar at the top with a chapter menu.
+       To rename a stop, edit the text inside .route__title / .route__when.
+       ===================================================================== -->
+  <nav class="route" id="route" aria-label="Chapters" data-theme="icing">
+    <button class="route__toggle" type="button" aria-expanded="false" aria-controls="route-track">
+      <span class="route__current">Contents</span>
+      <span class="route__toggle-hint">Chapters</span>
+    </button>
+    <div class="route__track" id="route-track">
+      <ol class="route__list">
+        <li>
+          <a class="route__stop" href="#chapter-1" style="--stop-color: var(--c-fern)">
+            <span class="route__dot" aria-hidden="true"></span>
+            <span class="route__title"><span class="route__num">1</span>The Fern</span>
+            <span class="route__when">Morning, on the way to class</span>
+          </a>
+        </li>
+        <li>
+          <a class="route__stop" href="#chapter-2" style="--stop-color: var(--c-maker)">
+            <span class="route__dot" aria-hidden="true"></span>
+            <span class="route__title"><span class="route__num">2</span>King Arthur Baking</span>
+            <span class="route__when">Earlier, as leftover dough</span>
+          </a>
+        </li>
+        <li>
+          <a class="route__stop" href="#chapter-3" style="--stop-color: var(--c-maker)">
+            <span class="route__dot" aria-hidden="true"></span>
+            <span class="route__title"><span class="route__num">3</span>The bakers</span>
+            <span class="route__when">From around 3 a.m.</span>
+          </a>
+        </li>
+        <li>
+          <a class="route__stop" href="#chapter-4" style="--stop-color: var(--c-road)">
+            <span class="route__dot" aria-hidden="true"></span>
+            <span class="route__title"><span class="route__num">4</span>On the road</span>
+            <span class="route__when">Each morning</span>
+          </a>
+        </li>
+        <li>
+          <a class="route__stop" href="#chapter-5" style="--stop-color: var(--c-student)">
+            <span class="route__dot" aria-hidden="true"></span>
+            <span class="route__title"><span class="route__num">5</span>Students</span>
+            <span class="route__when">Through the day, and beyond</span>
+          </a>
+        </li>
+      </ol>
+      <!-- The little cinnamon swirl that travels down the route -->
+      <svg class="route__bun" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+        <circle cx="16" cy="16" r="15" class="route__bun-base"/>
+        <path d="M17.2,16.0 L17.4,16.4 L17.4,17.0 L17.1,17.6 L16.7,18.1 L16.0,18.4 L15.2,18.6 L14.3,18.4 L13.4,17.9 L12.7,17.1 L12.3,16.0 L12.2,14.8 L12.6,13.5 L13.4,12.4 L14.5,11.5 L16.0,11.1 L17.6,11.1 L19.2,11.6 L20.6,12.6 L21.7,14.2 L22.2,16.0 L22.1,18.0 L21.4,19.9 L20.1,21.6 L18.2,22.8 L16.0,23.4 L13.6,23.3 L11.3,22.4 L9.4,20.8 L8.0,18.6 L7.3,16.0 L7.5,13.2 L8.6,10.6 L10.4,8.4 L13.0,6.8 L16.0,6.1 L19.2,6.3 L22.1,7.5 L24.7,9.7 L26.4,12.6 L27.2,16.0" class="route__bun-swirl"/>
+      </svg>
+      <p class="route__appendix"><a href="#about">About the research</a></p>
+    </div>
+    <span class="route__progress" aria-hidden="true"></span>
+  </nav>
+
+
+  <!-- =====================================================================
+       HERO
+       The title "proofs" (rises like dough) once when the page loads.
+       ===================================================================== -->
+  <header class="hero" id="top" data-theme="icing">
+    <div class="hero__inner">
+      <div class="hero__text">
+        <h1 class="hero__title">
+          <span class="hero__line">The Social</span>
+          <span class="hero__line">Biography</span>
+          <span class="hero__line">of a Pastry</span>
+          <span class="hero__line">at the Fern</span>
+        </h1>
+        <p class="hero__subtitle">From croissant scraps at King Arthur Baking to a breakfast on the way to class</p>
+        <p class="hero__byline">
+          Martin Skacel<br>
+          Anthropology of Food, Dartmouth College<br>
+          Research conducted November 2026
+        </p>
+      </div>
+
+      <!-- PHOTO: assets/images/hero-kaf-pastry-display.jpg -->
+      <figure class="media hero__figure">
+        <div class="media__frame" style="--ratio: 4 / 5">
+          <img src="assets/images/hero-kaf-pastry-display.jpg"
+               alt="King Arthur Baking’s pastry display, with cinnamon buns and other freshly baked pastries beside their labels and prices."
+               fetchpriority="high">
+        </div>
+        <figcaption>Cinnamon buns and other pastries, labeled and priced, in King Arthur Baking’s display case.</figcaption>
+      </figure>
+    </div>
+
+    <a class="hero__cue" href="#prologue">
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M17.2,16.0 L17.4,16.4 L17.4,17.0 L17.1,17.6 L16.7,18.1 L16.0,18.4 L15.2,18.6 L14.3,18.4 L13.4,17.9 L12.7,17.1 L12.3,16.0 L12.2,14.8 L12.6,13.5 L13.4,12.4 L14.5,11.5 L16.0,11.1 L17.6,11.1 L19.2,11.6 L20.6,12.6 L21.7,14.2 L22.2,16.0 L22.1,18.0 L21.4,19.9 L20.1,21.6 L18.2,22.8 L16.0,23.4 L13.6,23.3 L11.3,22.4 L9.4,20.8 L8.0,18.6 L7.3,16.0 L7.5,13.2 L8.6,10.6 L10.4,8.4 L13.0,6.8 L16.0,6.1 L19.2,6.3 L22.1,7.5 L24.7,9.7 L26.4,12.6 L27.2,16.0 L26.9,19.5 L25.5,22.9 L23.0,25.7 L19.8,27.6 L16.0,28.4"/></svg>
+      Follow one cinnamon bun
+    </a>
+  </header>
+
+
+  <main id="main">
+
+    <!-- ===================================================================
+         PROLOGUE: More than a cinnamon bun
+         =================================================================== -->
+    <section class="chapter chapter--prologue" id="prologue" data-theme="icing" aria-labelledby="prologue-title">
+      <div class="flow">
+        <h2 class="section-title" id="prologue-title">More than a cinnamon bun</h2>
+
+        <p class="lede">For my final project, I followed the social and physical biography of a cinnamon bun sold at the Fern Cafe in Dartmouth’s Irving Institute.</p>
+
+        <!-- FIELD NOTE: Martin's own reflections appear on graph paper throughout -->
+        <aside class="field-note" aria-label="From my field notes">
+          <p class="field-note__label">From my field notes:</p>
+          <p>I originally imagined tracing a pastry from its ingredients through production, transportation, sale, consumption, and eventual disposal, a kind of birth-to-grave investigation:</p>
+          <ol class="lifecycle" aria-label="The life cycle I first planned to trace">
+            <li>Ingredients</li>
+            <li>Production</li>
+            <li>Transportation</li>
+            <li>Sale</li>
+            <li>Consumption</li>
+            <li>Disposal</li>
+          </ol>
+          <p>But after speaking with the people who make, manage, sell, and eat these pastries, I realized that the more interesting journey is not just the physical, but is actually the social, as we have discussed in class. Although as an engineering student I look at materials and processes, not people, I really enjoyed this project and the exploration into that part of the story!</p>
+        </aside>
+
+        <p class="question">
+          <span class="question__label">The question I followed:</span>
+          How does an ordinary cinnamon bun change in economic, social, and cultural meaning as it moves from King Arthur Baking to the Fern Cafe and ultimately to a Dartmouth student?
+        </p>
+
+        <ul class="meanings">
+          <li data-voice="maker">To the producers, it represents skilled labor, creativity, and pride in craftsmanship.</li>
+          <li data-voice="fern">To Dartmouth Dining, it is also inventory, a purchasing decision, and a product that must meet student demand.</li>
+          <li data-voice="fern">To Fern employees, it is part of a busy workday and a source of customer interactions.</li>
+          <li data-voice="student">To Dartmouth students, it can be a quick breakfast, an occasional treat, a dessert shared with a friend, or even part of a birthday celebration.</li>
+        </ul>
+
+        <p>The same pastry passes through all of these relationships, with many different meanings along the way.</p>
+
+        <!-- CAST LIST: the colored marks match the quote colors used throughout -->
+        <section class="cast" aria-labelledby="cast-title">
+          <h3 id="cast-title">The people in this story</h3>
+          <dl class="cast__list">
+            <div data-voice="maker"><dt>Alyssa Hendrix</dt><dd>Head of Bakery, King Arthur Baking</dd></div>
+            <div data-voice="fern"><dt>Alina Menard</dt><dd>Lead at the Fern Cafe</dd></div>
+            <div data-voice="fern"><dt>Fern employees (anonymous)</dt><dd>Student workers at the Fern</dd></div>
+            <div data-voice="student"><dt>Dartmouth students (anonymous)</dt><dd>Customers who buy, share, and think about the bun</dd></div>
+            <div data-voice="author"><dt>Me</dt><dd>A student taking Anthropology of Food; you'll see my field notes and thoughts appear on white graph paper throughout</dd></div>
+          </dl>
+          <p class="cast__note">How I gathered and edited these interviews is explained in <a href="#about">About the research</a>.</p>
+        </section>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         CHAPTER 1: An ordinary Dartmouth breakfast on the way to class
+         Time of day: morning (light "dough" palette)
+         =================================================================== -->
+    <section class="chapter" id="chapter-1" data-theme="dough" style="--stop-color: var(--c-fern)" aria-labelledby="ch1-title">
+      <header class="chapter__opener">
+        <p class="chapter__num" aria-hidden="true">1</p>
+        <div>
+          <p class="chapter__where">The Fern Cafe, Irving Institute
+          <h2 class="chapter__title" id="ch1-title"><span class="visually-hidden">Chapter 1: </span>An ordinary Dartmouth breakfast on the way to class</h2>
+        </div>
+      </header>
+
+      <div class="flow">
+        <!-- PHOTO: assets/images/ch1-fern-pastry-shelves.jpg -->
+        <figure class="media is-wide">
+          <div class="media__frame" style="--ratio: 3 / 2">
+            <img src="assets/images/ch1-fern-pastry-shelves.jpg" loading="lazy" decoding="async"
+                 alt="Croissants and other baked goods on the glass shelves of the Fern Cafe’s pastry display.">
+          </div>
+          <figcaption>The pastry case at the Fern.</figcaption>
+        </figure>
+
+        <p>Every day, Dartmouth students stop at the Fern to purchase coffee, sandwiches, pastries, and other food. I regularly eat there myself, often without giving much thought to the processes that make these goods available. The cinnamon bun initially appeared to be an ordinary object to follow: a pastry I enjoy, baked nearby and delivered to campus. Yet the more people I interviewed, the more I realized how many decisions and relationships lie behind that otherwise simple purchase.</p>
+
+        <!-- PHOTO: assets/images/ch1-fern-counter.jpg -->
+        <figure class="media is-wide">
+          <div class="media__frame" style="--ratio: 3 / 2">
+            <img src="assets/images/ch1-fern-counter.jpg" loading="lazy" decoding="async"
+                 alt="A customer at the Fern Cafe’s service counter while an employee prepares or hands over an order.">
+          </div>
+          <figcaption>Pastries being handed over (a muffin) at the Fern’s counter.</figcaption>
+        </figure>
+
+        <h3>Decisions made before students arrive</h3>
+
+        <p>Alina Menard, the lead at the Fern, explained that King Arthur Baking delivers pastries to the Cafe each morning. She decides which products to order and in what quantities based on student demand, pricing, suitability for the Cafe, and her experience managing the operation. Some products sell out early; on some days, she told me, the chocolate croissants or the cinnamon buns are gone by 10 a.m. She prefers running out as opposed to having substantial leftovers. The selection students encounter in the display case is therefore not simply a reflection of student preferences. It is also the result of decisions, made by people like Alina, before students arrive.</p>
+
+        <p>The students I interviewed helped me see how much those choices matter. One Dartmouth student told me that they rarely buy pastries, but when they do, they look specifically for King Arthur products because they trust their quality:</p>
+
+        <figure class="voice" data-voice="student">
+          <blockquote><p>“I rarely buy pastries, but when I do, um, I look specifically for the King Arthur ones because I know that they’re going to be really good. And you can’t always get King Arthur elsewhere on campus.”</p></blockquote>
+          <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+        </figure>
+
+        <p>Another Dartmouth student explained their first experience learning about the cinnammon bun at the Fern:</p>
+
+        <figure class="voice" data-voice="student">
+          <blockquote><p>“I first discovered the [Fern] cinnamon bun probably like freshman or sophomore year. […] We have like weekly meetings there so sometimes I’ll go get one afterwards.”</p></blockquote>
+          <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+        </figure>
+
+        <p>Even so, they described the bun not as an essential daily ritual but as an occasional treat. It is so large and sweet that about one a month is enough, and they actually prefer King Arthur’s cardamom buns as a more manageable pastry.</p>
+
+        <figure class="voice" data-voice="student">
+          <blockquote><p>“I feel like it’s an occasional treat because it’s so big and kind of like extremely sweet that I can only have one like maybe once a month and that’s enough to tide me over.”</p></blockquote>
+          <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+        </figure>
+
+        <p>These different preferences raise a question that became central to my research: how much of what students choose to eat is shaped by personal taste, and how much by the institutions that make particular foods available? Crowther’s discussion of foodscapes and commodification in <cite>Eating Culture</cite> offers a way to think about everyday eating as part of larger commercial and institutional relationships (<button class="cite" type="button" popovertarget="ref-crowther">Crowther 2018</button>). A student sees a pastry in a display case. But behind it is an entire set of decisions about sourcing, purchasing, pricing, labor, and demand.</p>
+      </div>
+    </section>
+
+
+    <!-- TIME BAND: morning rewinds to the bakery -->
+    <section class="band band--rewind" data-theme="crust" aria-label="Interlude">
+      <div class="band__inner">
+        <p class="band__big">Let’s go back.</p>
+        <p class="band__small">Before it is anyone’s breakfast, the cinnamon bun begins at King Arthur Flour nearby, in fact, as something left over!</p>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         CHAPTER 2: From leftovers to something we love at the Fern
+         Time of day: inside the bakery (dark "crust" palette)
+         =================================================================== -->
+    <section class="chapter" id="chapter-2" data-theme="crust" style="--stop-color: var(--c-maker)" aria-labelledby="ch2-title">
+      <header class="chapter__opener">
+        <p class="chapter__num" aria-hidden="true">2</p>
+        <div>
+          <p class="chapter__where">King Arthur Baking
+          <h2 class="chapter__title" id="ch2-title"><span class="visually-hidden">Chapter 2: </span>From leftovers to something we love at the Fern</h2>
+        </div>
+      </header>
+
+      <div class="flow">
+        <p>One of the most surprising discoveries from my interview with Alyssa Hendrix, Head of Bakery at King Arthur Baking, was that the cinnamon buns are made partly from leftover croissant dough.</p>
+
+        <div class="interview-dialogue" data-voice="maker" role="group" aria-labelledby="iv-a">
+          <div class="interview-dialogue__head">
+            <p class="interview-dialogue__kicker">From my interview with Alyssa Hendrix, Head of Bakery</p>
+            <h3 class="interview-dialogue__title" id="iv-a">How croissant scraps become cinnamon buns</h3>
+          </div>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> A lot of people don’t know this, but the cinnamon buns are made from the leftover dough from our croissants.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Really?</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Yeah. So we waste as little as humanly possible here. That’s a big thing for me.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Um, so when we’re done with our croissants, we always have cut scraps, right?</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Yes.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Um, and so we take those cut scraps and they go into the cinnamon bun dough.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Yes.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Which is— that’s why it’s kind of flaky, um, and laminated instead of.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Oh.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Sort of squishy like some cinnamon buns are. I don’t know if you’ve had our cinnamon buns, but.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> They’re amazing. That’s why I was doing the project.</p>
+        </div>
+
+        <!-- SCROLLYTELLING: the dough diagram changes as each step scrolls past.
+             The steps on the right are ordinary text, so they can be edited freely. -->
+        <section class="scrolly is-full" data-scrolly aria-label="From croissant dough to cinnamon bun, in four steps">
+          <div class="scrolly__graphic">
+            <figure class="diagram">
+              <svg class="lam" data-step-target data-step="4" viewBox="0 0 600 560" role="img"
+                   aria-label="Illustration: a sheet of layered croissant dough is cut into croissant triangles, the leftover trimmings are gathered, and they become a spiral cinnamon bun finished with icing.">
+                <defs>
+                  <pattern id="hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                    <rect width="9" height="9" fill="#E3A34B"/>
+                    <line x1="0" y1="0" x2="0" y2="9" stroke="#F4C57A" stroke-width="4"/>
+                  </pattern>
+                </defs>
+
+                <!-- Step 1: the laminated sheet -->
+                <g class="lam-slab">
+                  <rect x="80" y="170" width="440" height="230" fill="#EBC98C"/>
+                  <rect x="80" y="400" width="440" height="5" fill="#F8E7B5"/>
+                  <rect x="80" y="405" width="440" height="5" fill="#D6A866"/>
+                  <rect x="80" y="410" width="440" height="5" fill="#F8E7B5"/>
+                  <rect x="80" y="415" width="440" height="5" fill="#D6A866"/>
+                  <rect x="80" y="420" width="440" height="5" fill="#F8E7B5"/>
+                  <rect x="80" y="425" width="440" height="5" fill="#D6A866"/>
+                  <rect x="80" y="430" width="440" height="5" fill="#F8E7B5"/>
+                  <rect x="80" y="435" width="440" height="5" fill="#D6A866"/>
+                  <text class="lam-label" x="80" y="474">Layers of dough and butter</text>
+                </g>
+
+                <!-- Step 2: croissants cut from the sheet -->
+                <g class="lam-croissants">
+                  <polygon points="120,380 170,190 220,380"/>
+                  <polygon points="170,190 270,190 220,380"/>
+                  <polygon points="220,380 270,190 320,380"/>
+                  <polygon points="270,190 370,190 320,380"/>
+                  <polygon points="320,380 370,190 420,380"/>
+                  <polygon points="370,190 470,190 420,380"/>
+                  <polygon points="420,380 470,190 520,380"/>
+                </g>
+
+                <!-- Step 2: the trimmings left over -->
+                <g class="lam-trims">
+                  <rect x="80" y="170" width="440" height="20"/>
+                  <rect x="80" y="380" width="440" height="20"/>
+                  <polygon points="80,190 170,190 120,380 80,380"/>
+                  <polygon points="470,190 520,190 520,380"/>
+                </g>
+                <text class="lam-label lam-label--trim" x="80" y="152">Trimmings</text>
+
+                <!-- Step 3: croissants leave for their own life -->
+                <text class="lam-label lam-label--away" x="470" y="84" text-anchor="middle">To croissants</text>
+
+                <!-- Steps 3–4: the bun -->
+                <g class="lam-bun">
+                  <circle class="lam-bun__base" cx="300" cy="300" r="160"/>
+                  <path class="lam-bun__swirl" pathLength="1" d="M306.0,300.0 L307.0,301.0 L307.7,302.3 L308.3,303.8 L308.5,305.5 L308.4,307.3 L307.9,309.2 L307.1,311.1 L305.8,313.0 L304.2,314.7 L302.2,316.1 L299.8,317.3 L297.2,318.1 L294.3,318.5 L291.3,318.5 L288.2,317.9 L285.1,316.8 L282.0,315.1 L279.2,312.9 L276.6,310.2 L274.4,307.1 L272.6,303.5 L271.4,299.5 L270.7,295.2 L270.7,290.8 L271.4,286.2 L272.8,281.7 L275.0,277.3 L277.8,273.2 L281.3,269.4 L285.5,266.1 L290.2,263.4 L295.5,261.4 L301.1,260.1 L307.0,259.6 L313.0,260.1 L319.0,261.4 L324.9,263.7 L330.6,266.9 L335.8,270.9 L340.5,275.8 L344.5,281.5 L347.7,287.8 L349.9,294.6 L351.2,301.8 L351.4,309.3 L350.6,316.9 L348.5,324.5 L345.4,331.7 L341.1,338.6 L335.8,344.9 L329.5,350.4 L322.4,355.1 L314.5,358.7 L306.1,361.2 L297.2,362.5 L288.1,362.5 L278.9,361.1 L269.9,358.4 L261.3,354.3 L253.2,348.9 L245.9,342.4 L239.5,334.7 L234.2,326.1 L230.1,316.6 L227.4,306.5 L226.2,296.0 L226.5,285.3 L228.4,274.6 L231.9,264.1 L236.9,254.2 L243.4,244.9 L251.2,236.5 L260.3,229.3 L270.5,223.4 L281.5,218.9 L293.2,216.1 L305.3,215.0 L317.7,215.6 L329.9,218.0 L341.8,222.3 L353.1,228.2 L363.6,235.8 L372.9,245.0 L381.0,255.5 L387.5,267.2 L392.3,279.8 L395.2,293.1 L396.3,306.9 L395.3,320.9 L392.3,334.6 L387.3,348.0 L380.3,360.6 L371.6,372.2 L361.1,382.5 L349.1,391.3 L335.9,398.4 L321.7,403.5 L306.7,406.6 L291.3,407.5 L275.8,406.1 L260.5,402.5 L245.7,396.7 L231.8,388.8 L219.0,378.8 L207.8,367.0 L198.2,353.6 L190.6,338.8 L185.2,323.0 L182.1,306.4 L181.3,289.3 L183.1,272.2 L187.3,255.4 L194.0,239.2 L202.9,224.0 L214.1,210.2 L227.3,198.0 L242.1,187.7 L258.5,179.6 L275.9,173.9 L294.2,170.7 L312.9,170.2 L331.6,172.4 L349.9,177.2 L367.5,184.8 L383.9,194.8 L398.8,207.2 L412.0,221.7 L422.9,238.1 L431.5,256.0 L437.5,275.1 L440.7,294.9 L440.9,315.2 L438.3,335.5 L432.8,355.3 L424.4,374.3 L413.2,392.0 L399.6,408.0 L383.7,422.0 L365.8,433.6 L346.4,442.7"/>
+                </g>
+
+                <!-- Step 4: cream cheese icing -->
+                <path class="lam-icing" pathLength="1" d="M178,252 L258,204 L192,334 L332,190 L232,402 L402,214 L302,424 L424,296"/>
+              </svg>
+              <figcaption class="diagram__note">Simplified illustration. It is not a record of King Arthur’s exact methods or specific proportions.</figcaption>
+            </figure>
+          </div>
+
+          <div class="scrolly__steps">
+            <div class="scrolly__step" data-step="1">
+              <div class="step">
+                <h3>Croissant dough</h3>
+                <p>The story begins with a different pastry. Croissant dough is laminated: rolled and folded so that thin layers of dough alternate with layers of butter.</p>
+                <p class="reading"><span><b>What it is:</b> laminated croissant dough</span><span class="reading__meaning"><b>What it means:</b> part of another pastry</span></p>
+              </div>
+            </div>
+            <div class="scrolly__step" data-step="2">
+              <div class="step">
+                <h3>Trimmings</h3>
+                <p>Cutting croissants leaves trimmings, essentially dough that does not become a croissant. Normally, it might be considered waste.</p>
+                  <blockquote><p>“We have all this extra dough, and we’re like, ooh, let’s make it something awesome.”</p></blockquote>
+                  <figcaption><span class="voice__name">Alyssa Hendrix</span></figcaption>
+                </figure>
+                <p class="reading"><span><b>What it is:</b> croissant trimmings</span><span class="reading__meaning"><b>What it means:</b> leftovers, but the chance to make something new</span></p>
+              </div>
+            </div>
+            <div class="scrolly__step" data-step="3">
+              <div class="step">
+                <h3>A separate recipe</h3>
+                <p>Rather than discard trimmings from croissant production, the bakery incorporates them into cinnamon buns. What might otherwise be considered waste is transformed through labor, skill, and a separate recipe.</p>
+                <p class="reading"><span><b>What it is:</b> cinnamon-bun dough</span><span class="reading__meaning"><b>What it means:</b> “something awesome”</span></p>
+              </div>
+            </div>
+            <div class="scrolly__step" data-step="4">
+              <div class="step">
+                <h3>Baked and iced</h3>
+                <p>The buns are baked and finished with cream cheese icing. The laminated dough contributes to the distinctive flaky texture of the finished pastry.</p>
+                <p class="reading"><span><b>What it is:</b> a cinnamon bun</span><span class="reading__meaning"><b>What it means:</b> something we love at the Fern</span></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <p>For me, this was a fascinating example of how food can change categories and value. Dough left over from one production process becomes an ingredient in another highly desirable, and tasty, product.</p>
+
+        <p>Even the croissant dough is linked to what the Fern orders. Alina told me that, as she understands it, croissant orders are hard to cancel at the last minute, because King Arthur pulls out croissant dough based on the number of pastries ordered. You cannot simply cancel the day before. Something like quiche, she said, can be adjusted closer to ordering.</p>
+
+        <h3>Learning where it came from</h3>
+
+        <p>The student interviews made this finding even more interesting. When I told a Dartmouth student about the croissant dough, they immediately connected the production method to their experience of eating the bun:</p>
+
+        <figure class="voice voice--feature" data-voice="student">
+          <blockquote><p>“I think that’s so sick that [it] is made of leftover croissant dough because I feel like a lot of cinnamon buns are missing the kind of like flakiness that comes with the laminated croissant pastry so they’re kind of like dense and stodgy as they would say on the Great British Baking Show.”</p></blockquote>
+          <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+        </figure>
+
+        <p>They explained that many cinnamon buns can feel dense, while King Arthur’s has a lighter, flakier texture. Learning that it uses laminated croissant dough helped explain why. The student also appreciated that the bakery had found a use for material that might otherwise be wasted. Their response was especially meaningful because they had originally discovered the pastry through visits to the Sustainability Office.</p>
+
+        <p>Another student’s reaction was somewhat different. They appreciated the sustainability aspect, but wondered whether croissant dough and cinnamon-bun dough ought to be different:</p>
+
+        <figure class="voice" data-voice="student">
+          <blockquote><p>“Part of me thinks that [their croissant] dough should not be the same as their bun dough, just because those are two different food items. […] Their bun tastes pretty good, so, you know, but the sustainability thing does matter.”</p></blockquote>
+          <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+        </figure>
+
+        <p>They acknowledged that they did not know enough about baking to judge the recipe, and said the reuse of dough made them somewhat more inclined to buy the bun. Neither response was simply a reaction to the word <em>leftover</em>. Both students weighed the idea of sustainability against their own expectations of taste and quality.</p>
+
+        <!-- PHOTO: assets/images/ch2-kaf-display-case.jpg -->
+        <figure class="media is-wide">
+          <div class="media__frame" style="--ratio: 3 / 2">
+            <img src="assets/images/ch2-kaf-display-case.jpg" loading="lazy" decoding="async"
+                 alt="Finished pastries arranged in a bakery display case.">
+          </div>
+          <figcaption>Farn items in a bakery display case at the Fern.</figcaption>
+        </figure>
+
+        <h3>Sustainability as a relationship</h3>
+
+        <p>Alyssa also discussed King Arthur’s efforts to source ingredients regionally and reduce packaging waste. At the Fern, Alina described working with King Arthur to replace disposable cardboard packaging with reusable delivery bins. She was actually the one responsible for the change, and reached out to KAF about changing from cardboard boxes to reusable containers; as she described it, small decisions like this can be made between the Fern and King Arthur without going through a long chain of approvals. This is a reminder that sustainability is not simply a technical question about materials and waste. It also depends on relationships and negotiations between people, suppliers, and institutions.</p>
+
+        <p>When we talked about waste, Alyssa told me how little the bakery throws away. I then asked what happens to pastries that don’t sell:</p>
+
+        <!-- INTERVIEW: Why almost nothing goes to waste -->
+        <div class="interview-dialogue" data-voice="maker" role="group" aria-labelledby="iv-waste">
+          <div class="interview-dialogue__head">
+            <p class="interview-dialogue__kicker">From my interview with Alyssa Hendrix, Head of Bakery</p>
+            <h3 class="interview-dialogue__title" id="iv-waste">Why almost nothing goes to waste</h3>
+          </div>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> We do try to reuse as much as possible, um, as few single-use items as possible. Um, I think the amount of trash that we generate downstairs in the bakery is the least of anywhere I’ve ever worked in my 20 years of doing this.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Really? Okay, that’s amazing. That’s awesome.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> It’s awesome. And that’s— I like that you asked about the cinnamon buns, because very specifically, that’s a really good way that we have all this extra dough, and we’re like, ooh, let’s make it something awesome.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Well, that’s perfect, because as an engineer, one of my interests is sustainability. So that’s why I’m kind of interested in the life cycle of a food and, like, how is it used? I’m kind of curious about the cinnamon buns, as well as other pastries.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> What do you guys— because I know what the Fern does. They’ve told me, what do they do with pastries that are no longer fresh that they don’t want to serve?</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> I’m just kind of curious, what do you guys do with them?</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> So, I’ll be honest, that actually doesn’t happen as much as you think.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Really? Good.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> We tend to run a little bit of a deficit, sometimes to our own detriment, with, you know.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Sure.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Profitability and whatever. Sometimes I think we probably could sell a little more, but I would rather run out at the end of the day. So I will be honest, I would say 98% of the time, we don’t have anything left over.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Amazing.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Uh, everything else, when the people who work here arrive first thing in the morning, they’re over in our break room.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Gotcha.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> The people get to snack.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> That’s amazing.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Yeah, it’s fabulous.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> I mean, I think that’s perfect.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Pretty much nothing goes in the trash, because that break room, if there are things in there in the morning, it’s like vultures.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Yeah.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> They’re gone.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> I can understand that, yeah. Hey, you could give them to Dartmouth students for free if you’d want. I’m sure that’s not company policy allowed, but I’m just saying.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> I can say that, you know.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> I wish. I totally wish.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> You have my phone number, so you know who to text if there's leftovers.</p>
+        </div>
+
+        <p>Alina told me she shares that preference at the Fern: she would rather run out than have leftovers.</p>
+
+        <p>Dylan Gordon’s “Food: Translation” offers a useful lens for these transformations (<button class="cite" type="button" popovertarget="ref-gordon">Gordon 2013</button>). The dough changes materially as it becomes a cinnamon bun, but its meaning changes too: from a production leftover, to an example of resourcefulness, to a product students value for its taste, texture, and connection to King Arthur. What seems like an ordinary pastry carries a history that is not visible in the display case.</p>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         CHAPTER 3: The work and people behind the pastry
+         Time of day: around 3 a.m. (darkest "night" palette)
+         =================================================================== -->
+    <section class="chapter" id="chapter-3" data-theme="night" style="--stop-color: var(--c-maker)" aria-labelledby="ch3-title">
+      <header class="chapter__opener">
+        <p class="chapter__num" aria-hidden="true">3</p>
+        <div>
+          <p class="chapter__where">The bakery at King Arthur Baking<br>From around 3 a.m.</p>
+          <h2 class="chapter__title" id="ch3-title"><span class="visually-hidden">Chapter 3: </span>The work and people behind the pastry</h2>
+        </div>
+      </header>
+
+      <div class="flow">
+        <!-- VIDEO: assets/video/ch3-bakers-cutting-dough.mp4
+             This video is silent. Strip the audio from the file before you add it
+             (see README), and the page also keeps it muted as a backup. -->
+        <figure class="media is-wide">
+          <div class="media__frame" style="--ratio: 16 / 9">
+            <video controls muted loop playsinline preload="metadata"
+                   data-autoplay-in-view
+                   aria-label="Bakers cutting and weighing dough at King Arthur Baking">
+              <source src="assets/video/ch3-bakers-cutting-dough.mp4" type="video/mp4">
+            </video>
+          </div>
+          <figcaption>Bakers cutting and weighing dough at King Arthur Baking. This footage shows bakery skills and equipment, not the cinnamon buns being made.</figcaption>
+        </figure>
+
+        <p>During my visit to King Arthur, I had the privilege of seeing the in-store bakery. I observed bakers working with specialized equipment, handling dough, and producing pastries through a combination of repetitive movements and highly skilled experience. Most of this work happens long before any customer arrives.</p>
+
+        <p>Alyssa explained that baking requires both formal knowledge and practical experience. Understanding the chemistry behind a recipe helps bakers troubleshoot problems, but many skills develop through practice and mentorship.</p>
+
+        <figure class="voice" data-voice="maker">
+          <blockquote><p>“For pastry, there’s so much chemistry involved, um, that I personally think something like a pastry school or a pastry program somewhere is incredibly helpful so that you can get that scientific background […] Anybody can come in and they can follow a recipe, and they can make a loaf of bread, but if you don’t understand the science behind it, you’re not going to be able to fix it if something goes wrong.”</p></blockquote>
+          <figcaption><span class="voice__name">Alyssa Hendrix</span>, Head of Bakery, King Arthur Baking</figcaption>
+        </figure>
+
+        <p>One moment during my tour illustrated this particularly well. A baker pulled Alyssa away to ask for her judgment about dough that did not feel quite right. Her experience was needed to assess something that could not necessarily be resolved by following written instructions alone. Later, I asked her how she thinks about that kind of learned skill, using my mother’s cooking as a comparison.</p>
+
+        <!-- INTERVIEW B: My mother’s Slovak soup and learned skill -->
+        <div class="interview-dialogue" data-voice="maker" role="group" aria-labelledby="iv-b">
+          <div class="interview-dialogue__head">
+            <p class="interview-dialogue__kicker">From my interview with Alyssa Hendrix, Head of Bakery</p>
+            <h3 class="interview-dialogue__title" id="iv-b">Discussing learned skills</h3>
+          </div>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> So walk me through that sort of a little bit over your career and, like, how do you view that question of, like, a learned skill? I use this example with my mom’s cooking, where my mom makes some soups.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> She’s from Slovakia, so former Czechoslovakia, right? Some of the soups she makes.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> She has walked me through how to make them, and I can’t for the life of me make them on myself, not nearly as good as her. So walk me through that. What does that experience look like in your career and, like, how do you see that in baking today when you’re training new bakers?</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Uh, if you’re comparing it to anything like that, so much of it is just practice.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Yeah.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> You know, it’s, um, you can, again, like I said earlier, you can go to pastry school, you can learn all the chemistry, you can learn all the science, you can know everything in your head, start to finish. But until you’ve done it 100 times or 1,000 times or 10,000 times, you’re not going to have that same skill as somebody who has done it that many times. Um, you know, and I’ve seen a lot of very talented, especially pastry bakers, who can do all kinds of crazy things</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> And it’s just practice.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Um, and just so that I can be on your mom’s side for a second, it’s also love.</p>
+        </div>
+
+        <!-- 10,000 CINNAMON BUNS: one tiny bun is drawn once, then tiled 125 x 80 = 10,000 times -->
+        <figure class="repetition is-wide">
+          <svg viewBox="0 0 1000 640" role="img"
+               aria-label="A grid of 10,000 tiny cinnamon buns, 125 across and 80 down.">
+            <defs>
+              <pattern id="tiny-bun" width="8" height="8" patternUnits="userSpaceOnUse">
+                <g transform="scale(0.25)">
+                  <circle cx="16" cy="16" r="14.5" fill="#D69A58"/>
+                  <path d="M17.2,16.0 L17.4,16.4 L17.4,17.0 L17.1,17.6 L16.7,18.1 L16.0,18.4 L15.2,18.6 L14.3,18.4 L13.4,17.9 L12.7,17.1 L12.3,16.0 L12.2,14.8 L12.6,13.5 L13.4,12.4 L14.5,11.5 L16.0,11.1 L17.6,11.1 L19.2,11.6 L20.6,12.6 L21.7,14.2 L22.2,16.0 L22.1,18.0 L21.4,19.9 L20.1,21.6 L18.2,22.8 L16.0,23.4 L13.6,23.3 L11.3,22.4 L9.4,20.8 L8.0,18.6 L7.3,16.0 L7.5,13.2 L8.6,10.6 L10.4,8.4 L13.0,6.8 L16.0,6.1 L19.2,6.3 L22.1,7.5 L24.7,9.7 L26.4,12.6 L27.2,16.0" fill="none" stroke="#6E3517" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+              </pattern>
+            </defs>
+            <rect width="1000" height="640" fill="url(#tiny-bun)"/>
+          </svg>
+          <figcaption class="repetition__caption">10,000 cinnamon buns, visualized</figcaption>
+        </figure>
+
+        <aside class="field-note" aria-label="From my field notes">
+          <p class="field-note__label">From my field notes:</p>
+          <p>I had initially approached the project as a process and supply-chain investigation. This conversation challenged me to think beyond what a recipe, diagram, or production schedule could show. The knowledge involved in making a good pastry is not all written down. Some of it is held in people’s hands, senses, and years of experience.</p>
+        </aside>
+
+        <!-- PHOTO: assets/images/ch3-dough-and-scale.jpg -->
+        <figure class="media is-wide">
+          <div class="media__frame" style="--ratio: 4 / 3">
+            <img src="assets/images/ch3-dough-and-scale.jpg" loading="lazy" decoding="async"
+                 alt="Dough in a large container beside a commercial scale inside the King Arthur bakery, with bakery staff and equipment in the background.">
+          </div>
+          <figcaption>Inside the King Arthur bakery: weighing out dough ingredients in a scale.</figcaption>
+        </figure>
+
+        <h3>Work Dartmouth students (probably) never see</h3>
+
+        <p>Alyssa also discussed the demanding nature of bakery labor, most of which happens before a customer ever arrives:</p>
+
+        <!-- INTERVIEW J: The invisible 3 a.m. shift -->
+        <div class="interview-dialogue" data-voice="maker" role="group" aria-labelledby="iv-j">
+          <div class="interview-dialogue__head">
+            <p class="interview-dialogue__kicker">From my interview with Alyssa Hendrix, Head of Bakery</p>
+            <h3 class="interview-dialogue__title" id="iv-j">The 3 a.m. shift</h3>
+          </div>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> I don’t think people necessarily know that we are here at 3 o’clock in the morning every day.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> You are? I didn’t know that, for example. Wow.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> It’s kind of true. Um, a lot of people will come in, you know, we have those big windows into the bakery downstairs, and they’ll come in at 2 o’clock.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> And they’ll say, oh, there’s nobody here baking. I’m like, oh, no, they’ve been gone.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Their day is done. Um, you know, so it is, it’s a very tough job. It’s a very physically demanding job.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> You know, when you’re throwing around several hundred pounds of dough at a time.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> It is. It breaks all of us down at some point.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Um, but the truth is, we all love it. You have to be insane to do this for a living, at least a little bit insane.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> You think? Could you expand on that?</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Like, you know, beat the crap out of yourself all day and be covered in flour from head to toe. And a lot of it is, um, repetition, right? When you’re making 400 baguettes.</p>
+        </div>
+        
+        <p>When I told a Dartmouth student about the early start, they said they would have guessed it, but that it still gave them a deeper appreciation of the work:</p>
+
+        <figure class="voice" data-voice="student">
+          <blockquote><p>“I think those bakers start very early. But it is pretty impressive to think about. I don’t think I could do that.”</p></blockquote>
+          <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+        </figure>
+
+        <p>I asked Alyssa what it means to make food with “love.” She was candid that her answer was a personal belief rather than a scientific claim:</p>
+
+        <!-- INTERVIEW C: Does love actually change food? -->
+        <div class="interview-dialogue" data-voice="maker" role="group" aria-labelledby="iv-c">
+          <div class="interview-dialogue__head">
+            <p class="interview-dialogue__kicker">From my interview with Alyssa Hendrix, Head of Bakery</p>
+            <h3 class="interview-dialogue__title" id="iv-c">Is love the secret ingredient?</h3>
+          </div>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> What form does that actually take when you say love?</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Oh, I don’t know.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Because when we talk about, like, physically, love is not a real ingredient you can put into it, but perhaps it’s part of the process of the cooking. So what do you think that looks like if you had to actually, like, think about what is that, if you had to, like, point at it?</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> I can give you an answer. Um, it’s a little maybe cheesy and esoteric, right?</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Okay.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> So understand that this is, this is no way scientific. This is just my own personal belief system. I do think that the attitude that you have when you are making a piece of food, whatever it is, uh, I think the mood and the attitude you have will reflect in that somehow.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> But I’ve done this enough to know when I’ve got a team that’s happy.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Everything coming out of there just looks better. It looks better. The people who are eating it are happy.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Right? So it, it, there may not be any way to ever scientifically quantify that, but I firmly believe that happy people make better food.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> And, and it’s, maybe it’s not even like making it with love. It’s just kind of making it with joy.</p>
+        </div>
+
+        <p>Crowther’s discussions of cooking, labor, and food knowledge helps us understand the difference between written instructions and embodied expertise (<button class="cite" type="button" popovertarget="ref-crowther">Crowther 2018</button>). The cinnamon bun represents ingredients and a recipe, certainly, but also the early mornings, the physical effort, judgment, mentorship, and the pride that the bakers take in their craft.</p>
+      </div>
+    </section>
+
+
+    <!-- TIME BAND: night turns to morning -->
+    <section class="band band--dawn" data-theme="dawn" aria-label="Interlude">
+      <div class="band__inner">
+        <p class="band__big">Morning.</p>
+        <p class="band__small">The pastries are packed, labeled, and loaded for the day’s deliveries.</p>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         CHAPTER 4: From King Arthur to Dartmouth
+         Time of day: each morning (pale "dawn" palette)
+         =================================================================== -->
+    <section class="chapter" id="chapter-4" data-theme="dawn" style="--stop-color: var(--c-road)" aria-labelledby="ch4-title">
+      <header class="chapter__opener">
+        <p class="chapter__num" aria-hidden="true">4</p>
+        <div>
+          <p class="chapter__where">From the bakery to the Fern<br>Each morning</p>
+          <h2 class="chapter__title" id="ch4-title"><span class="visually-hidden">Chapter 4: </span>From King Arthur to Dartmouth</h2>
+        </div>
+      </header>
+
+      <div class="flow">
+        <p class="lede">After production, the cinnamon bun enter their transportation journey.</p>
+
+        <!-- SCROLLYTELLING: the delivery van moves along the map as you read.
+             data-progress on each step = how far along the route the van is (0 to 1). -->
+        <section class="scrolly scrolly--map is-full" data-scrolly aria-label="The delivery, step by step">
+          <div class="scrolly__graphic">
+            <figure class="diagram">
+              <svg class="route-map" data-route-map viewBox="0 0 640 420" role="img"
+                   aria-label="Schematic map: King Arthur Baking in Norwich, Vermont, on the west side of the Connecticut River, and the Fern at Dartmouth in Hanover, New Hampshire, on the east side, with the delivery route crossing the river.">
+                <text class="map-state" x="40" y="56">Vermont</text>
+                <text class="map-state" x="600" y="56" text-anchor="end">New Hampshire</text>
+
+                <path class="map-river" d="M330,0 C300,60 350,110 322,170 C298,222 346,272 318,330 C302,368 332,398 324,420"/>
+                <text class="map-river-label" x="350" y="404">Connecticut River</text>
+
+                <!-- The route: a faint dashed version, and a solid version that draws in -->
+                <path class="map-route-faint" d="M150,240 C200,240 240,231 282,230 L362,227 C410,225 455,214 500,214"/>
+                <path class="map-route-drawn" pathLength="1" d="M150,240 C200,240 240,231 282,230 L362,227 C410,225 455,214 500,214"/>
+                <!-- Invisible copy used only to measure where the van should be -->
+                <path id="van-route" class="map-route-measure" d="M150,240 C200,240 240,231 282,230 L362,227 C410,225 455,214 500,214"/>
+
+                <g class="map-place map-place--maker">
+                  <circle cx="150" cy="240" r="9"/>
+                  <text x="150" y="276" text-anchor="middle" class="map-place__name">King Arthur Baking</text>
+                  <text x="150" y="296" text-anchor="middle" class="map-place__sub">Norwich</text>
+                </g>
+                <g class="map-place map-place--fern">
+                  <circle cx="500" cy="214" r="9"/>
+                  <text x="500" y="250" text-anchor="middle" class="map-place__name">The Fern</text>
+                  <text x="500" y="270" text-anchor="middle" class="map-place__sub">Irving Institute, Dartmouth</text>
+                </g>
+
+                <g class="map-van" transform="translate(150 240)">
+                  <rect x="-17" y="-27" width="34" height="17" rx="4" class="map-van__body"/>
+                  <rect x="5" y="-24" width="9" height="7" rx="1.5" class="map-van__window"/>
+                  <circle cx="-9" cy="-9" r="4" class="map-van__wheel"/>
+                  <circle cx="9" cy="-9" r="4" class="map-van__wheel"/>
+                </g>
+              </svg>
+            </figure>
+          </div>
+
+          <div class="scrolly__steps">
+            <div class="scrolly__step" data-step="1" data-progress="0">
+              <div class="step">
+                <h3>Packed</h3>
+                <p>Alyssa described the bakery’s packing and expediting process, in which staff prepare, label, and organize products for daily deliveries. Alina told me the pastries are packed so that they don’t touch each other during transport.</p>
+                <!-- PHOTO: assets/images/ch4-kaf-bakery-rack.jpg -->
+                <figure class="media">
+                  <div class="media__frame" style="--ratio: 4 / 5">
+                    <img src="assets/images/ch4-kaf-bakery-rack.jpg" loading="lazy" decoding="async"
+                         alt="A tall wheeled bakery rack holding multiple trays or sheet pans inside the King Arthur bakery.">
+                  </div>
+                  <figcaption>A wheeled cinnammon bun rack inside King Arthur Baking.</figcaption>
+                </figure>
+              </div>
+            </div>
+
+            <div class="scrolly__step" data-step="2" data-progress="0.1">
+              <div class="step">
+                <h3>Loaded</h3>
+                <p>King Arthur’s drivers then transport the pastries to customers, including Dartmouth, in the morning. Alina told me the Fern is King Arthur’s main customer at Dartmouth, taking in about $800 worth of pastries a day.</p>
+                <!-- PHOTO: assets/images/ch4-kaf-delivery-van.jpg -->
+                <figure class="media">
+                  <div class="media__frame" style="--ratio: 3 / 2">
+                    <img src="assets/images/ch4-kaf-delivery-van.jpg" loading="lazy" decoding="async"
+                         alt="A King Arthur Baking delivery van parked outside.">
+                  </div>
+                  <figcaption>A King Arthur Baking delivery van.</figcaption>
+                </figure>
+              </div>
+            </div>
+
+            <div class="scrolly__step" data-step="3" data-progress="0.62">
+              <div class="step">
+                <h3>Across the river</h3>
+                <p>The trip itself is short. King Arthur’s bakery in Norwich, Vermont, sits just across the Connecticut River from Dartmouth in Hanover, New Hampshire.</p>
+              </div>
+            </div>
+
+            <div class="scrolly__step" data-step="4" data-progress="1">
+              <div class="step">
+                <h3>Rolled in</h3>
+                <p>A Fern employee described what happens when a delivery arrives:</p>
+                <figure class="voice" data-voice="fern">
+                  <blockquote><p>“When the pastries get [to] the Fern, they get dropped off by KAF vans and rolled into the Fern. Then the boxes are stacked and usually unpacked and displayed by our manager, Alina.”</p></blockquote>
+                  <figcaption><span class="voice__name">A Fern employee</span></figcaption>
+                </figure>
+                <p>Today the pastries arrive in reusable white bins. The Fern unpacks them, and King Arthur washes the bins.</p>
+                <!-- PHOTO: assets/images/ch4-white-delivery-bins.jpg -->
+                <figure class="media">
+                  <div class="media__frame" style="--ratio: 3 / 2">
+                    <img src="assets/images/ch4-white-delivery-bins.jpg" loading="lazy" decoding="async"
+                         alt="Stacks of reusable white delivery bins at the Fern Cafe.">
+                  </div>
+                  <figcaption>Reusable delivery bins at the Fern, which replaced cardboard boxes.</figcaption>
+                </figure>
+              </div>
+            </div>
+
+            <div class="scrolly__step" data-step="5" data-progress="1">
+              <div class="step">
+                <h3>On the trays</h3>
+                <p>From the bins, the pastries go onto trays in the display case. When a student buys one, staff ask whether they would like it heated.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <p>What looks like a finished product on a shelf has already passed through the hands of bakers, packing staff, drivers, and Cafe workers.</p>
+
+        <!-- The relay of hands: a sequence, so it is numbered -->
+        <div class="relay is-wide">
+          <p class="relay__label">Who has handled the bun so far</p>
+          <ol class="relay__list">
+            <li data-voice="maker">Bakers</li>
+            <li data-voice="maker">Packing staff</li>
+            <li data-voice="road">Drivers</li>
+            <li data-voice="fern">Alina</li>
+            <li data-voice="fern">Fern employees</li>
+            <li data-voice="student" class="relay__next">A student, soon</li>
+          </ol>
+        </div>
+
+        <h3>Inventory</h3>
+
+        <p>At the Fern, the cinnamon bun takes on another meaning: inventory that must be ordered, priced, displayed, sold, and managed. Alina balances what King Arthur offers with student preferences and the Cafe’s financial and operational needs. She receives a list of everything King Arthur sells, and not all of it suits a Cafe. She looks for items that are not too costly, not too hard to transport, and easy for a student, and she tries not to order things that won’t hold up the next day. For quantities, she relies on experience; she has been doing this for a while, and she knows what is needed.</p>
+
+        <!-- ORDER LEDGER: a summary of Alina's interview notes, not real records -->
+        <div class="ledger-wrap is-wide" role="region" aria-labelledby="ledger-caption" tabindex="0">
+          <table class="ledger">
+            <caption id="ledger-caption">
+              <span class="ledger__title">How the order gets made</span>
+              <span class="ledger__note">Summarized from my interview notes with Alina Menard and arranged by item, to give a rough idea of how items are chosen.</span>
+            </caption>
+            <thead>
+              <tr><th scope="col">Item</th><th scope="col">What Alina told me</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Cinnamon buns and chocolate croissants</th><td>Popular enough that, on some days, they are gone by 10 a.m.</td></tr>
+              <tr><th scope="row">Brownies</th><td>Ordered only on Mondays, because they come in a count of 20. In terms when they are especially popular, she orders more on Wednesdays.</td></tr>
+              <tr><th scope="row">Almond cloud cookie</th><td>Gluten-free. When a lot of customers are looking for gluten-free options, it always goes first.</td></tr>
+              <tr><th scope="row">Regular croissants</th><td>She tries to sell them the day they arrive. Being able to reheat a pastry helps: warming it gives it a second life.</td></tr>
+              <tr><th scope="row">Quiche</th><td>Sells really well, and is easier to adjust closer to ordering.</td></tr>
+              <tr><th scope="row">Veggie danish</th><td>Counts toward a breakfast meal swipe.</td></tr>
+              <tr><th scope="row">Seasonal pastries</th><td>Rotate through the year. King Arthur lets the Fern know, so the Cafe can post signs and allergen information.</td></tr>
+              <tr><th scope="row">Cheesecake</th><td>On King Arthur’s list, but not necessarily sellable at the Fern.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>King Arthur, she said, is very responsive. It even held a tasting at the Fern to gather preferences a few months before our interview, and Alina lets the bakery know when the Cafe closes for break.</p>
+
+        <p>Prices are set by Dartmouth. Alina sees what Dartmouth pays on King Arthur’s invoice, but she does not decide what students pay. She submits the invoice within Dartmouth Dining, and the price is determined there.</p>
+
+        <h3>Money that doesn’t feel like real money</h3>
+
+         <p>Dartmouth’s broader dining system also shapes how students encounter food and think about its price. When I asked a Dartmouth student whether paying with dining dollars changes how they think about price, their answer was revealing:</p>
+
+        <!-- INTERVIEW D: Dining dollars and the meaning of money -->
+        <div class="interview-dialogue" data-voice="student" role="group" aria-labelledby="iv-d">
+          <div class="interview-dialogue__head">
+            <p class="interview-dialogue__kicker">From my interview with a Dartmouth student</p>
+            <h3 class="interview-dialogue__title" id="iv-d">Dining dollars and the meaning of money</h3>
+          </div>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Uh, it’s fine. In general, does paying with dining dollars or a meal swipe change how you think about the price of things at Dartmouth?</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Student:</strong> Dining dollars versus swipe. Um, I will say with the dining dollars, I just, like, never remember the equivalency, so I have absolutely no idea if they’re the same thing or what I mean or not. Um, yeah.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> And what about— I mean, what do you think about dining dollars and meal swipe versus regular dollars?</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Student:</strong> I definitely am under the impression that, like, I— like, I know it’s real money, but in my head it doesn’t feel like real money. And, um, I kind of, like, feel like I have a relatively unlimited amount of dining dollars. So I kind of just, like, don’t— I don’t track mine at all or think about it really at all in the same way I would if I was, like, buying coffee with real money.</p>
+        </div>
+
+        <p>At the same time, seeing King Arthur’s name on a pastry strongly influences their expectations of quality. They said that if they wanted a pastry, they would choose a King Arthur product even over another option they might otherwise prefer:</p>
+
+        <figure class="voice" data-voice="student">
+          <blockquote><p>“If I see that it says King Arthur Flour, I will buy it. If I need a pastry, like, I’ll buy [King Arthur] over something else. Even if the other thing is maybe a pastry I like better, I’m picking King Arthur over, like, the other one.”</p></blockquote>
+          <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+        </figure>
+
+        <p>Even freshness, in their view, matters less than the name:</p>
+
+        <figure class="voice voice--feature" data-voice="student">
+          <blockquote><p>“Not always the world’s freshest pastry, but definitely better than other options. […] Stale [King Arthur] is better than fresh, not King Arthur.”</p></blockquote>
+          <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+        </figure>
+
+        <p>Here, value is not determined by price alone. Reputation, institutional payment systems, and personal experience all matter.</p>
+
+        <h3>Behind the counter</h3>
+
+        <!-- PHOTO: assets/images/ch4-fern-register.jpg -->
+        <figure class="media is-wide">
+          <div class="media__frame" style="--ratio: 3 / 2">
+            <img src="assets/images/ch4-fern-register.jpg" loading="lazy" decoding="async"
+                 alt="A Fern employee operating the register beside the pastry display during a customer transaction.">
+          </div>
+          <figcaption>At the register, beside the pastry display.</figcaption>
+        </figure>
+
+        <p>Fern employees also showed me how much labor continues after the pastries have been delivered. Some work closing shifts, and a typical shift, they wrote, begins like this:</p>
+
+        <figure class="voice" data-voice="fern">
+          <blockquote><p>“A typical shift begins with me putting my apron on, putting my hairnet on, washing my hands and putting gloves on.”</p></blockquote>
+          <figcaption><span class="voice__name">A Fern employee</span></figcaption>
+        </figure>
+
+        <p>Between making coffee and heating food, they prepare the Cafe to close. In their words, that consists of:</p>
+
+        <ul class="todo">
+          <li>sweeping</li>
+          <li>cleaning the ovens</li>
+          <li>wiping down everything</li>
+          <li>washing the syrup bottles</li>
+          <li>restocking cups and coffee beans</li>
+          <li>refilling the drink fridge for what is missing</li>
+        </ul>
+
+        <p>Much of this work happens behind the scenes while customers see only the counter and the food.</p>
+
+        <h3>All out for the day</h3>
+
+        <p>For one employee, the pastries are often already sold out by the time they arrive. They described how disappointing it can be to tell students that nothing is left, especially when someone came hoping for a particular pastry:</p>
+
+        <figure class="voice voice--feature" data-voice="fern">
+          <blockquote><p>“... by then all the pastries are gone. It’s always sad to tell people who come in for a pastry that we’re all out for the day. Some people seem really devastated by it.”</p></blockquote>
+          <figcaption><span class="voice__name">A Fern employee</span></figcaption>
+        </figure>
+
+        <p>The employee has noticed relatively few leftovers this year:</p>
+
+        <figure class="voice" data-voice="fern">
+          <blockquote><p>“This year I haven’t really noticed unsold pastries as much as last year. I don’t think much gets left over. On the few times there are things we wrap them up and store them to sell the next day.”</p></blockquote>
+          <figcaption><span class="voice__name">A Fern employee</span></figcaption>
+        </figure>
+
+        <p>Alina’s preference for avoiding substantial waste helps explain why a popular product may disappear before the afternoon. Pastries are never kept for more than two days. When there are a lot of leftovers, they go to a food pantry. On one occasion, after a mix-up meant an entire order from KAF was sent (instead of just the daily order), Dartmouth paid King Arthur for it and the pastries went to ’53 Commons or were spread among the other Cafes, to ensure nothing went to waste.</p>
+
+        <h3>Who decides</h3>
+
+
+        
+        <p>The employee also raised a larger point about institutional responsibility. They enjoy working at the Fern but wish students better understood how much influence Dartmouth Dining has over the food options available to them:</p>
+
+        <figure class="voice voice--feature" data-voice="fern">
+          <blockquote><p>“I think the Fern is a great place to work. I wish people understood the agency Dartmouth dining has in our food options and pushed DDS to do more for our community in terms of healthy and nutritious foods.”</p></blockquote>
+          <figcaption><span class="voice__name">A Fern employee</span></figcaption>
+        </figure>
+
+        <figure class="voice" data-voice="fern">
+          <blockquote><p>“I’ve learned so much about how DDS works and I think students can be asking for more from the higher levels of management.”</p></blockquote>
+          <figcaption><span class="voice__name">A Fern employee</span></figcaption>
+        </figure>
+
+        <p>Their perspective complicates the idea that the Cafe is simply a place where customers express their preferences. Students make choices, but the range of choices is shaped by decisions elsewhere in the institution.</p>
+
+        <p>Alyssa at KAF also offered another reminder that food preferences are culturally shaped. Reflecting on her experience working in Alabama, she described how pastries that appealed to customers in New England did not always sell in the South, and vice versa:</p>
+
+          <div class="interview-dialogue" data-voice="maker" role="group" aria-labelledby="iv-l">
+          <div class="interview-dialogue__head">
+            <p class="interview-dialogue__kicker">From my interview with Alyssa Hendrix, Head of Bakery</p>
+            <h3 class="interview-dialogue__title" id="iv-l">How culture shapes taste across regions</h3>
+          </div>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Um, have you here at King Arthur Flour, or maybe anywhere else in your experience, ever changed a recipe or developed a pastry differently because of what customers or the business wanted, even if it was kind of went against what your thinking was for the pastry?</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> All the time. Yes, rather consistently, actually. Um, good example.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Anyway, um, but living in Alabama was really interesting because Southerners have a very different take on pastries than Northerners.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Just different flavors they like. So, like, up here we really like our cornbread savory. Down there they like their cornbread sweet.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Um, little stuff like that. And so I would make things for our pastry case, and they wouldn’t sell. And I couldn’t understand because up here, you know, people would go nuts over this stuff.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Nope. And then they have all kinds of stuff down there that if I tried to sell it up here, it wouldn’t go over well.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Sure.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> And so, yeah, I mean, you have to, you have to cater a little bit to what the people want.</p>
+        </div>
+
+        <p>Back at Dartmouth, a student reached for the same word to explain why the cinnamon bun is not quite for them:</p>
+
+        <figure class="voice" data-voice="student">
+          <blockquote><p>“But, like, cinnamon buns are supposed to be sweet. I think they’re just catering to that type of person, which isn’t me.”</p></blockquote>
+          <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+        </figure>
+
+        <p>Gordon’s idea of translation applies here as the cinnamon bun moves between systems of production, transportation, administration, and consumption (<button class="cite" type="button" popovertarget="ref-gordon">Gordon 2013</button>). Crowther’s discussion of foodscapes helps explain how the Fern and King Arthur operate within wider networks of suppliers, institutions, and customers (<button class="cite" type="button" popovertarget="ref-crowther">Crowther 2018</button>). The bun’s journey is not just a trip in a delivery van. It is moving through different systems of labor, value, and decision-making.</p>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         CHAPTER 5: The social life of a cinnamon bun at Dartmouth, and beyond
+         Time of day: through the day (warm "golden" palette)
+         =================================================================== -->
+    <section class="chapter" id="chapter-5" data-theme="golden" style="--stop-color: var(--c-student)" aria-labelledby="ch5-title">
+      <header class="chapter__opener">
+        <p class="chapter__num" aria-hidden="true">5</p>
+        <div>
+          <p class="chapter__where">Dartmouth, and beyond
+          <h2 class="chapter__title" id="ch5-title"><span class="visually-hidden">Chapter 5: </span>The social life of a cinnamon bun at Dartmouth, and beyond</h2>
+        </div>
+      </header>
+
+      <div class="flow">
+        <p>One of the most interesting moments from my King Arthur interview came when I asked Alyssa whether it bothered her that students eating her pastries might never know how much work went into making them.</p>
+
+        <!-- INTERVIEW F: Making food and letting it go -->
+        <div class="interview-dialogue" data-voice="maker" role="group" aria-labelledby="iv-f">
+          <div class="interview-dialogue__head">
+            <p class="interview-dialogue__kicker">From my interview with Alyssa Hendrix, Head of Bakery</p>
+            <h3 class="interview-dialogue__title" id="iv-f">Making food and letting it go</h3>
+          </div>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Does it matter to you that, like, a student at Dartmouth, for example, who eats it, might never really know anything about the work that went into it or the history behind it? Does it matter to you and how people consume and appreciate pastries?</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Not at all. Uh, I would love to think, obviously, that everyone who would eat one would be thoughtful and considerate, but, um, okay, so I’m a knitter. Um, and I remember when I first started knitting and I was making people, you know, hats, whatever else.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> And I would get really sad if, like, I made someone something and I never saw them wear it.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> And I remember I got a really good piece of advice from an older woman who I used to knit with, who basically said, “Look, when you make something, you have to put it out in the world and let it go.”</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Um, and so that’s very much how I feel about the baking, is we’re, we’re. Do I wish everyone sort of really appreciated the ins and outs and the fancy butter that we use and the fancy vanilla that we use? Of course you want that.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> Um, mostly we’re just making things and then putting them out in the world and letting them go. And.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Right.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> If it makes somebody smile, that’s all I care about.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--martin"><strong>Martin:</strong> Absolutely.</p>
+          <p class="interview-dialogue__turn interview-dialogue__turn--other"><strong>Alyssa:</strong> I mean, so I think there’s a level of joy that I think people will get either way, even if they know nothing about it and they don’t know where it came from, you know.</p>
+        </div>
+
+        <!-- EXCHANGE: quotes from separate interviews, set side by side -->
+        <div class="exchange is-wide">
+          <p class="exchange__note">I've grouped these by "two sides of the Connecticut River" below. The cinnammon bun takes on different understandings depending on where it is. Alyssa and the students never spoke to each other; these answers come from separate interviews, but are closely related.</p>
+
+          <div class="exchange__row">
+            <figure class="voice" data-voice="maker">
+              <blockquote><p>“Do I wish everyone sort of really appreciated the ins and outs and the fancy butter that we use and the fancy vanilla that we use? Of course you want that. Um, mostly we’re just making things and then putting them out in the world and letting them go.”</p></blockquote>
+              <figcaption><span class="voice__name">Alyssa Hendrix</span>, the maker</figcaption>
+            </figure>
+            <figure class="voice" data-voice="student">
+              <blockquote><p>“I think it definitely matters to know who made my food. I wouldn’t say that it’s a thought that regularly occurs to me.”</p></blockquote>
+              <figcaption><span class="voice__name">A Dartmouth student</span>, an eater</figcaption>
+            </figure>
+          </div>
+
+          <div class="exchange__row">
+            <figure class="voice" data-voice="maker">
+              <blockquote><p>“But still, like, if you write a piece of music, at some point you got to put it out. […] And then it belongs to everybody else, you know? […] It’s not you anymore.”</p></blockquote>
+              <figcaption><span class="voice__name">Alyssa Hendrix</span></figcaption>
+            </figure>
+            <figure class="voice" data-voice="student">
+              <blockquote><p>“I actually really enjoy the cardamom buns a lot. I don’t know if the same baker also works on those, but those are fantastic and a little bit more manageable in my opinion.”</p></blockquote>
+              <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <aside class="field-note" aria-label="From my field notes">
+          <p class="field-note__label">From my field notes:</p>
+          <p>This contradicted one of my original assumptions. I had imagined that producers would want customers to recognize all the work behind their food, and that making this labor visible was the main purpose of my project. Alyssa’s answer suggested something different: for her, the satisfaction of making something that brings joy can matter even when the person eating it knows nothing about its production.</p>
+        </aside>
+
+        <h3>One bun, many meanings</h3>
+
+        <p>The student interviews brought that idea back to Dartmouth. A Dartmouth student has tasted the cinnamon bun, but finds its size and icing overwhelmingly sweet.</p>
+
+        <div class="chorus is-wide">
+          <figure class="voice" data-voice="student">
+            <blockquote><p>“It’s a little too sweet for me personally, which is why I don’t buy it myself.”</p></blockquote>
+            <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+          </figure>
+          <figure class="voice" data-voice="student">
+            <blockquote><p>“The size? Good for the price. That’s a huge cinnamon bun, actually.”</p></blockquote>
+            <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+          </figure>
+          <figure class="voice" data-voice="student">
+            <blockquote><p>“I like the taste of the icing, though, but it’s just, like, overwhelming.”</p></blockquote>
+            <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+          </figure>
+        </div>
+
+        <p>They consider it more of a dessert than a breakfast: “For me, I think it’s a dessert.” Their roommate sometimes buys it for breakfast, and the two have a routine of visiting the Fern together and chatting before class:</p>
+
+        <figure class="voice" data-voice="student">
+          <blockquote><p>“If I go to the Fern, I often go with my roommate, […] and we chat before our classes.”</p></blockquote>
+          <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+        </figure>
+
+        <p>This student described occasionally taking a bite of their roommate’s food: “I guess, technically, I steal a bite.” The same pastry can therefore be a meal for one person, a shared taste for another, and part of the social setting of a friendship. For this student, a pastry is almost always social:</p>
+
+        <figure class="voice voice--feature" data-voice="student">
+          <blockquote><p>“I feel like I only get a pastry if I’m with a friend. If I’m alone, I’m just in a rush, usually.”</p></blockquote>
+          <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+        </figure>
+
+        <p>Even ordering one involves a small social interaction. They would ask for it warmed, “for sure.” But buying from a friend who works behind the counter can be awkward:</p>
+
+        <figure class="voice" data-voice="student">
+          <blockquote><p>“It is definitely more awkward when it’s somebody I know […] So it’s, like, enough that I have to say, like, ‘Oh, how are you doing?’ […] But then there’s this really awkward moment of transition to […] ‘Um, can I please get a pastry?’”</p></blockquote>
+          <figcaption><span class="voice__name">A Dartmouth student</span></figcaption>
+        </figure>
+
+        <p>When I suggested that their roles had switched, from friends to server and customer, they agreed: “She’s like serving me, yeah.” A pastry purchase can briefly rearrange a relationship.</p>
+
+        <p>Another Dartmouth student described the cinnamon bun as an occasional treat rather than a central part of their Dartmouth life. It does not especially remind them of home or family, although they have fond memories of visiting King Arthur’s own bakery.</p>
+
+        <h3>A birthday cake</h3>
+
+        <p>Another story came from a Fern employee, who met a student who said the cinnamon bun was her favorite food from the Cafe:</p>
+
+        <figure class="voice voice--feature" data-voice="fern">
+          <blockquote><p>“I usually don’t work when the cinnamon buns are selling but I did meet a girl […] the other day who told me her favorite food from the Fern is the cinnamon buns and that her friends made her cinnamon bun cake from King Arthur bakery cinnamon buns for her birthday.”</p></blockquote>
+          <figcaption><span class="voice__name">A Fern employee</span></figcaption>
+        </figure>
+
+        <p>I did not interview the birthday student directly, but the anecdote shows how a commercial pastry can be incorporated into a personal celebration. In that setting, the cinnamon bun is no longer just inventory or a convenient snack. It becomes part of a gesture of friendship.</p>
+
+        <p>These stories also complicate the idea of a single, universal consumer experience. One student finds the bun too sweet; another loves its flaky texture but buys it only occasionally; for someone else, friends reportedly turned it into a birthday cake. A bakery’s intention, a Cafe’s inventory system, and a student’s experience do not always align perfectly. Yet the bun connects them all.</p>
+
+        <p>Paxson’s “Food: Deviation” and Weiss’s “Food: Integration” help me think about the judgments, relationships, and social contexts through which people assign value to food (<button class="cite" type="button" popovertarget="ref-paxson">Paxson 2013</button>; <button class="cite" type="button" popovertarget="ref-weiss">Weiss 2013</button>). Eating can be private, routine, social, celebratory, or emotionally significant. The meaning of a cinnamon bun is therefore not fixed when it leaves the oven. It continues to change as people buy it, share it, reject it, remember it, or give it to someone else.</p>
+
+        <!-- FULL CIRCLE: the maker's hope and the eater's answer, facing each other -->
+        <div class="full-circle is-full">
+          <h3 class="visually-hidden">Full circle</h3>
+          <p class="full-circle__intro">When I told a Dartmouth student that Alyssa hoped her pastries would make people happy, they had a simple response.</p>
+          <div class="full-circle__pair">
+            <figure class="voice voice--circle" data-voice="maker">
+              <blockquote><p>“If it makes somebody smile, that’s all I care about.”</p></blockquote>
+              <figcaption><span class="voice__name">Alyssa Hendrix</span>, who makes it</figcaption>
+            </figure>
+            <div class="full-circle__river" aria-hidden="true"></div>
+            <figure class="voice voice--circle" data-voice="student">
+              <blockquote><p>“You can tell the KAF head [baker] that they definitely bring me a lot of joy.”</p></blockquote>
+              <figcaption><span class="voice__name">A Dartmouth student</span>, who eats it</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <p>The baker and the student had never met. The student did not know about the 3 a.m. shifts, the repeated practice, or the decisions behind the counter. Yet the outcome Alyssa cared about had reached them.</p>
+
+        <p>I began this project wanting to understand the life cycle of a pastry. I expected the most interesting findings to concern ingredients, production, transportation, and waste. Those things still matter, especially the reuse of croissant dough and the effort to reduce packaging. But the interviews changed the focus of my research. I learned about the baker who trusts experience more than a recipe alone, managers who balance student demand against waste, the employee whose work and understanding of the cafe is rarely noticed, and the students who assign very different meanings to the same cinnamon bun.</p>
+
+        <p class="closing">The bun’s physical journey may end when someone eats it. Its social life does not. It may become a memory of a meeting in the Irving Institute, a conversation with a roommate, a birthday cake, or simply a small moment of happiness before class. Perhaps that is the most meaningful part of its biography: the people who make it cannot predict what it will become, and it means something slightly different for everyone. For me, it's one of my favorite reasons to come to the Fern.</p>
+      </div>
+    </section>
+
+
+    <!-- TIME BAND: the day ends, and the cycle begins again -->
+    <section class="band band--dusk" data-theme="night" aria-label="Epilogue">
+      <div class="band__inner">
+        <p class="band__big">Tomorrow morning, the bakers will start again.</p>
+        <p class="band__small"><a href="#top">Return to the beginning</a></p>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         APPENDIX: About the research + References
+         =================================================================== -->
+    <section class="appendix" id="about" data-theme="icing" aria-labelledby="about-title">
+      <div class="flow">
+        <h2 class="section-title" id="about-title">About the research</h2>
+
+        <p>This project draws on interviews conducted in November 2026 with Alyssa Hendrix, Head of Bakery at King Arthur Baking; Alina Menard, lead at the Fern Cafe; Fern employees; and Dartmouth students. It also incorporates my original observations, photographs, and short video footage at King Arthur Baking and the Fern.</p>
+
+        <p>Student and employee perspectives are presented anonymously. The birthday-cake story is a secondhand account reported by the employee, not an independently verified interview with the person involved. Photographs and video of general bakery work are not presented as footage of cinnamon-bun production. The full interview transcripts are not reproduced here.</p>
+
+        <h3>A note on quotations</h3>
+        <p>Quotations come from recorded interviews and written responses. Longer interview excerpts are condensed: I selected turns from each conversation, so some of the exchange between them is not shown, and the speakers’ hesitations are left in. Alina Menard’s comments are paraphrased from my interview notes rather than quoted. Recorded interviews were transcribed automatically, so I corrected obvious transcription errors: words in square brackets are my corrections or clarifications (the software did not always recognize “King Arthur,” for example). Bracketed ellipses […] mark omitted words. I standardized capitalization and punctuation but did not otherwise change anyone’s words.</p>
+
+        <!-- EDIT: write your own thanks here, or delete this paragraph -->
+        <p>Thank you to Alyssa Hendrix, Alina Menard, the Fern employee, and the students who shared their time and their thoughts with me.</p>
+
+        <h2 class="section-title section-title--refs" id="references">References</h2>
+        <ul class="references">
+          <li data-ref="ref-crowther">Crowther, Gillian. 2018. <cite>Eating Culture: An Anthropological Guide to Food</cite>. 2nd ed. Toronto: University of Toronto Press.</li>
+          <li data-ref="ref-gordon">Gordon, Dylan. 2013. “Food: Translation.” <cite>Fieldsights</cite>, August 11. <a href="https://www.culanth.org/fieldsights/food-translation">https://www.culanth.org/fieldsights/food-translation</a>.</li>
+          <li data-ref="ref-paxson">Paxson, Heather. 2013. “Food: Deviation.” <cite>Fieldsights</cite>, August 19. <a href="https://www.culanth.org/fieldsights/food-deviation">https://www.culanth.org/fieldsights/food-deviation</a>.</li>
+          <li data-ref="ref-weiss">Weiss, Brad. 2013. “Food: Integration.” <cite>Fieldsights</cite>, August 26. <a href="https://www.culanth.org/fieldsights/food-integration">https://www.culanth.org/fieldsights/food-integration</a>.</li>
+        </ul>
+
+        <h3>Primary research</h3>
+        <ul class="references">
+          <li>Hendrix, Alyssa. Interview by author. King Arthur Baking, November 2026.</li>
+          <li>Menard, Alina. Interview by author. Fern Cafe, Dartmouth College, November 2026.</li>
+          <li>Dartmouth student interviewees. Interviews by author, November 2026.</li>
+          <li>Fern Cafe employee. Written interview with author, November 2026.</li>
+          <li>Original field notes, photographs, and video recordings by author, King Arthur Baking and Fern Cafe, November 2026.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" data-theme="icing">
+    <div class="site-footer__inner">
+      <p class="site-footer__title">The Social Biography of a Pastry at the Fern</p>
+      <p>A student research project by Martin Skacel for Anthropology of Food at Dartmouth College. This is independent research, not affiliated with or endorsed by King Arthur Baking or Dartmouth Dining. Photographs and video by the author.</p>
+      <p><a href="https://martinskacel.github.io">martinskacel.github.io</a></p>
+    </div>
+  </footer>
+
+
+  <!-- =====================================================================
+       CITATION POPOVERS
+       Clicking an in-text citation, e.g. (Crowther 2018), opens the matching
+       box below. To add a new source: copy one <div popover>, give it a new
+       id, and use that id in the button's popovertarget="..." attribute.
+       ===================================================================== -->
+  <div id="ref-crowther" class="ref-pop" popover>
+    <p>Crowther, Gillian. 2018. <cite>Eating Culture: An Anthropological Guide to Food</cite>. 2nd ed. Toronto: University of Toronto Press.</p>
+    <a href="#references">All references</a>
+  </div>
+  <div id="ref-gordon" class="ref-pop" popover>
+    <p>Gordon, Dylan. 2013. “Food: Translation.” <cite>Fieldsights</cite>, August 11.</p>
+    <a href="https://www.culanth.org/fieldsights/food-translation">Read the essay</a>
+  </div>
+  <div id="ref-paxson" class="ref-pop" popover>
+    <p>Paxson, Heather. 2013. “Food: Deviation.” <cite>Fieldsights</cite>, August 19.</p>
+    <a href="https://www.culanth.org/fieldsights/food-deviation">Read the essay</a>
+  </div>
+  <div id="ref-weiss" class="ref-pop" popover>
+    <p>Weiss, Brad. 2013. “Food: Integration.” <cite>Fieldsights</cite>, August 26.</p>
+    <a href="https://www.culanth.org/fieldsights/food-integration">Read the essay</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1729 @@
+/* =============================================================================
+   The Social Biography of a Pastry at the Fern
+   styles.css
+   -----------------------------------------------------------------------------
+   CONTENTS
+    1. Design tokens (colors, fonts, sizes)
+    2. Themes: the bun's day. Each chapter is lit like a time of day.
+    3. Base and typography
+    4. Layout: the reading grid
+    5. Route navigation (left rail on desktop, top bar on phones)
+    6. Hero
+    7. Chapter openers and time bands
+    8. Prologue pieces (question, meanings, cast list)
+    9. Photos, video, and missing-media placeholders
+   10. Voices (interview quotes)
+   11. Field notes (graph paper)
+   12. Scrollytelling (sticky diagram + steps)
+   13. Dough diagram (Chapter 2)
+   14. Delivery map (Chapter 4)
+   15. 10,000 cinnamon buns (Chapter 3)
+   16. Relay, ledger, and closing-shift list (Chapter 4)
+   17. Exchange, chorus, and full circle (Chapter 5)
+   18. Appendix, references, citation popovers, footer
+   19. Utilities, reduced motion, print
+   ========================================================================== */
+
+
+/* -----------------------------------------------------------------------------
+   1. DESIGN TOKENS
+   Change a color here and it changes everywhere.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Light surfaces */
+  --icing:  #FBF6EE;   /* cream cheese icing: hero, prologue, appendix */
+  --dough:  #F2E4CE;   /* proofed dough: morning at the Fern (Ch. 1) */
+  --dawn:   #ECE5DC;   /* first light: the delivery (Ch. 4) */
+  --golden: #F5E2BD;   /* afternoon: students (Ch. 5) */
+  --paper:  #FDFBF6;   /* graph paper for field notes */
+
+  /* Dark surfaces */
+  --crust:  #2C1A11;   /* inside the bakery (Ch. 2) */
+  --night:  #1B1510;   /* around 3 a.m. (Ch. 3) */
+
+  /* Ink and accents */
+  --ink:      #2E1E15;  /* body text on light backgrounds */
+  --cinnamon: #7A3A1A;  /* headlines and links on light */
+  --glaze:    #E3A34B;  /* amber oven-glow accent on dark */
+  --fern:     #2F5A37;  /* the Fern */
+  --river:    #9DBDBA;  /* the Connecticut River */
+  --graphite: #3E3A36;  /* pencil on graph paper */
+
+  /* Fonts */
+  --font-serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-sans: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Type scale (based on the classic 12/14/16/18/21/24/36/48/60/72 scale) */
+  --step--1: 0.875rem;                                        /* 14px captions */
+  --step-0:  clamp(1.0625rem, 0.98rem + 0.35vw, 1.1875rem);   /* 17→19px body */
+  --step-1:  clamp(1.1875rem, 1.1rem + 0.4vw, 1.3125rem);     /* 19→21px */
+  --step-2:  1.5rem;                                          /* 24px */
+  --step-3:  clamp(1.625rem, 1.3rem + 1.4vw, 2.25rem);        /* 26→36px */
+  --step-4:  clamp(2.25rem, 1.6rem + 2.8vw, 3.75rem);         /* 36→60px */
+  --step-5:  clamp(2.75rem, 1.8rem + 4.6vw, 5.25rem);         /* 44→84px */
+
+  /* Spacing and layout */
+  --rail-w: 14rem;                          /* width of the route on desktop */
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);    /* page edge padding */
+  --measure: 40rem;                         /* comfortable reading width */
+  --section-space: clamp(5rem, 12vh, 9rem);
+  --topbar-h: 3.25rem;
+}
+
+
+/* -----------------------------------------------------------------------------
+   2. THEMES: THE BUN'S DAY
+   Any element with data-theme="..." gets that time of day's colors.
+   Sections paint their own background (see .hero, .chapter, .band, etc.).
+   -------------------------------------------------------------------------- */
+[data-theme] {
+  --bg: var(--icing);
+  --fg: var(--ink);
+  --muted: #6B5A4D;
+  --rule: rgba(46, 30, 21, 0.16);
+  --rule-strong: rgba(46, 30, 21, 0.32);
+  --link: var(--cinnamon);
+  --surface: #FFFDF9;
+  /* Speaker colors (who is talking) */
+  --c-maker: #85500E;     /* King Arthur Baking */
+  --c-fern: #2F5A37;      /* the Fern */
+  --c-student: #8E3B1C;   /* students */
+  --c-road: #3F6462;      /* the delivery */
+  --c-author: #5E5750;    /* my field notes */
+}
+[data-theme="icing"]  { --bg: var(--icing); }
+[data-theme="dough"]  { --bg: var(--dough); --muted: #66513F; --surface: #FBF4E8; }
+[data-theme="dawn"]   { --bg: var(--dawn);  --muted: #5F564E; --surface: #FAF7F2; }
+[data-theme="golden"] { --bg: var(--golden); --muted: #634D33; --surface: #FCF3E1; }
+
+[data-theme="crust"],
+[data-theme="night"] {
+  --fg: #F3E7D7;
+  --muted: #C7B49F;
+  --rule: rgba(243, 231, 215, 0.18);
+  --rule-strong: rgba(243, 231, 215, 0.34);
+  --link: var(--glaze);
+  --surface: rgba(255, 245, 230, 0.05);
+  --c-maker: #EDAE55;
+  --c-fern: #9CC59E;
+  --c-student: #EFA07A;
+  --c-road: #9DBDBA;
+  --c-author: #BFB4A9;
+}
+[data-theme="crust"] { --bg: var(--crust); }
+[data-theme="night"] { --bg: var(--night); }
+
+/* Map speaker names to colors */
+[data-voice="maker"]   { --voice-color: var(--c-maker); }
+[data-voice="fern"]    { --voice-color: var(--c-fern); }
+[data-voice="student"] { --voice-color: var(--c-student); }
+[data-voice="road"]    { --voice-color: var(--c-road); }
+[data-voice="author"]  { --voice-color: var(--c-author); }
+
+
+/* -----------------------------------------------------------------------------
+   3. BASE AND TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  background: var(--icing);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: var(--step-0);
+  font-weight: 380;
+  line-height: 1.62;
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 30, "WONK" 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, video, svg, canvas, iframe { display: block; max-width: 100%; }
+
+p { margin: 0; }
+
+h1, h2, h3 {
+  margin: 0;
+  font-weight: 560;
+  line-height: 1.1;
+  text-wrap: balance;
+  font-variation-settings: "SOFT" 60, "WONK" 0;
+}
+
+h3 {
+  font-size: var(--step-2);
+  line-height: 1.2;
+  color: var(--fg);
+}
+
+a {
+  color: var(--link);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+em { font-style: italic; }
+cite { font-style: italic; }
+b, strong { font-weight: 620; }
+
+:focus-visible {
+  outline: 3px solid var(--link, var(--cinnamon));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection { background: var(--glaze); color: var(--crust); }
+
+/* Anchor jumps land below the phone top bar */
+[id] { scroll-margin-top: calc(var(--topbar-h) + 1rem); }
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--ink);
+  color: var(--icing);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus { top: 1rem; }
+
+
+/* -----------------------------------------------------------------------------
+   4. LAYOUT: THE READING GRID
+   .flow is a grid with three widths:
+     text (default) | .is-wide (photos, big quotes) | .is-full (edge to edge)
+   -------------------------------------------------------------------------- */
+.flow {
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--gutter), 1fr)
+    [wide-start] minmax(0, 7rem)
+    [text-start] min(var(--measure), calc(100% - 2 * var(--gutter)))
+    [text-end] minmax(0, 7rem)
+    [wide-end] minmax(var(--gutter), 1fr)
+    [full-end];
+}
+.flow > * { grid-column: text; }
+.flow > .is-wide { grid-column: wide; }
+.flow > .is-full { grid-column: full; }
+
+/* Vertical rhythm between consecutive blocks */
+.flow > * + * { margin-top: 1.15em; }
+.flow > h3 { margin-top: 2.8em; }
+.flow > h3 + * { margin-top: 0.9em; }
+
+/* Painted sections */
+.hero, .chapter, .band, .appendix, .site-footer {
+  background-color: var(--bg);
+  color: var(--fg);
+}
+.chapter { padding-block: var(--section-space); }
+
+/* Soft transitions where one time of day meets the next */
+#chapter-1 { --from: var(--icing); }
+#chapter-3 { --from: var(--crust); }
+#chapter-5 { --from: var(--dawn); }
+#chapter-1, #chapter-3, #chapter-5 {
+  background-image: linear-gradient(to bottom, var(--from) 0, var(--bg) 45vh);
+  background-repeat: no-repeat;
+}
+
+/* Desktop: leave room for the route on the left */
+@media (min-width: 1180px) {
+  .chapter, .band, .appendix, .site-footer { padding-left: var(--rail-w); }
+}
+
+.lede {
+  font-size: var(--step-1);
+  line-height: 1.5;
+}
+
+.section-title {
+  font-size: var(--step-4);
+  color: var(--fg);
+  margin-bottom: 0.4em;
+}
+
+.closing {
+  font-size: var(--step-1);
+  line-height: 1.55;
+}
+
+
+/* -----------------------------------------------------------------------------
+   5. ROUTE NAVIGATION
+   Hidden on the hero, then appears. JavaScript sets data-theme on the route
+   so its colors match the section underneath.
+   -------------------------------------------------------------------------- */
+.route {
+  position: fixed;
+  z-index: 50;
+  font-family: var(--font-sans);
+  color: var(--fg);
+  transition: opacity 0.4s ease, visibility 0.4s, transform 0.35s ease, background-color 0.5s ease, color 0.5s ease;
+}
+
+.route__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.route__stop {
+  display: grid;
+  grid-template-columns: 1rem 1fr;
+  column-gap: 0.85rem;
+  align-items: start;
+  color: inherit;
+  text-decoration: none;
+}
+.route__stop:hover .route__title { text-decoration: underline; text-underline-offset: 0.2em; }
+
+.route__dot {
+  grid-row: 1 / span 2;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-top: 0.2rem;
+  border-radius: 50%;
+  border: 2px solid var(--stop-color);
+  background: var(--bg);
+  transition: background-color 0.3s ease;
+}
+.route__stop[aria-current="true"] .route__dot { background: var(--stop-color); }
+
+.route__title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.route__num {
+  display: inline-block;
+  min-width: 1.1em;
+  font-variant-numeric: tabular-nums;
+  color: var(--stop-color);
+}
+.route__when {
+  grid-column: 2;
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  color: var(--muted);
+}
+.route__appendix {
+  font-size: 0.8125rem;
+  margin-top: 2rem;
+  padding-left: 1.85rem;
+}
+.route__appendix a { color: var(--muted); }
+
+.route__bun { display: none; }
+.route__bun-base { fill: #D69A58; }
+.route__bun-swirl { fill: none; stroke: #6E3517; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---- Desktop: vertical route on the left ---- */
+@media (min-width: 1180px) {
+  .route {
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--rail-w);
+    padding: 2rem 1.25rem 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .no-js .route,
+  .route.is-visible { opacity: 1; visibility: visible; }
+
+  .route__toggle, .route__progress { display: none; }
+
+  .route__track { position: relative; }
+
+  .route__list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.9rem;
+  }
+  /* the dashed road connecting the stops */
+  .route__list::before {
+    content: "";
+    position: absolute;
+    left: calc(0.4375rem - 1px);
+    top: 0.65rem;
+    bottom: 1.6rem;
+    width: 2px;
+    background-image: linear-gradient(to bottom, var(--rule-strong) 50%, transparent 50%);
+    background-size: 2px 8px;
+  }
+
+  .route__bun {
+    display: block;
+    position: absolute;
+    left: calc(0.4375rem - 0.8rem);
+    top: 0;
+    width: 1.6rem;
+    height: 1.6rem;
+    transform: translateY(var(--bun-y, 0px));
+    transition: transform 0.2s linear;
+    pointer-events: none;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+  }
+  .route:not(.has-position) .route__bun { opacity: 0; }
+}
+
+/* ---- Phones and tablets: slim top bar with a chapter menu ---- */
+@media (max-width: 1179.98px) {
+  .route {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--topbar-h);
+    padding: 0 var(--gutter);
+    display: flex;
+    align-items: center;
+    background-color: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    transform: translateY(-105%);
+  }
+  .no-js .route { position: static; transform: none; height: auto; padding-block: 0.75rem; }
+  .route.is-visible { transform: none; }
+
+  .route__toggle {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: 600 0.9375rem/1.2 var(--font-sans);
+    text-align: left;
+    cursor: pointer;
+  }
+  .route__current {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .route__toggle-hint {
+    flex: none;
+    font-weight: 500;
+    font-size: 0.8125rem;
+    color: var(--muted);
+    padding: 0.3rem 0.65rem;
+    border: 1px solid var(--rule-strong);
+    border-radius: 999px;
+  }
+  .route__toggle[aria-expanded="true"] .route__toggle-hint { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+
+  .js .route__track {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - var(--topbar-h));
+    overflow-y: auto;
+    padding: 1.25rem var(--gutter) 1.5rem;
+    background-color: var(--bg);
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .route.is-open .route__track { display: block; }
+  .route__list { display: grid; gap: 1rem; }
+  .route__appendix { margin-top: 1.25rem; }
+
+  .route__progress {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 2px;
+    width: 100%;
+    background: var(--link);
+    transform-origin: 0 50%;
+    transform: scaleX(var(--progress, 0));
+  }
+}
+
+
+/* -----------------------------------------------------------------------------
+   6. HERO
+   The title "proofs": letters swell and soften like rising dough.
+   -------------------------------------------------------------------------- */
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(2rem, 6vh, 4rem) var(--gutter) 1.75rem;
+}
+
+.hero__inner {
+  flex: 1;
+  width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: end;
+}
+
+.hero__title {
+  font-size: clamp(3rem, 7.2vw, 8rem);
+  font-weight: 620;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--cinnamon);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  margin-bottom: 0.45em;
+}
+.hero__line {
+  display: block;
+  white-space: nowrap;
+  transform-origin: 30% 100%;
+}
+
+.hero__subtitle {
+  font-size: var(--step-3);
+  font-weight: 360;
+  font-style: italic;
+  line-height: 1.2;
+  max-width: 24ch;
+  margin-bottom: 1.6rem;
+}
+
+.hero__byline {
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.hero__figure { align-self: stretch; display: flex; flex-direction: column; justify-content: flex-end; }
+.hero__figure .media__frame { max-height: 78vh; }
+
+.hero__cue {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 2.5rem auto 0;
+  width: 100%;
+  max-width: 90rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--fg);
+  text-decoration: none;
+}
+.hero__cue svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  fill: none;
+  stroke: var(--cinnamon);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.hero__cue:hover { text-decoration: underline; }
+
+/* The one orchestrated moment on the page */
+@media (prefers-reduced-motion: no-preference) {
+  .js .hero__line {
+    animation: proof 2.4s cubic-bezier(0.22, 0.8, 0.25, 1) both;
+  }
+  .js .hero__line:nth-child(2) { animation-delay: 0.16s; }
+  .js .hero__line:nth-child(3) { animation-delay: 0.32s; }
+  .js .hero__line:nth-child(4) { animation-delay: 0.48s; }
+
+  .js .hero__subtitle,
+  .js .hero__byline,
+  .js .hero__figure,
+  .js .hero__cue {
+    animation: settle 1.2s ease 1.3s both;
+  }
+}
+
+@keyframes proof {
+  0%   { opacity: 0; transform: scale(0.96, 0.78); font-weight: 260; font-variation-settings: "SOFT" 0, "WONK" 0; }
+  30%  { opacity: 1; }
+  100% { opacity: 1; transform: none; font-weight: 620; font-variation-settings: "SOFT" 100, "WONK" 1; }
+}
+@keyframes settle {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@media (max-width: 860px) {
+  .hero__inner { grid-template-columns: 1fr; align-items: start; }
+  .hero__title { font-size: clamp(2.75rem, 13vw, 6rem); }
+  .hero__figure .media__frame { --ratio: 4 / 3 !important; max-height: none; }
+}
+
+
+/* -----------------------------------------------------------------------------
+   7. CHAPTER OPENERS AND TIME BANDS
+   -------------------------------------------------------------------------- */
+.chapter__opener {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: end;
+  gap: 0 clamp(1rem, 3vw, 2.5rem);
+  max-width: calc(var(--measure) + 14rem + 2 * var(--gutter));
+  margin: 0 auto clamp(3rem, 8vh, 5rem);
+  padding: 0 var(--gutter);
+}
+
+.chapter__num {
+  font-size: clamp(6rem, 15vw, 12.5rem);
+  font-weight: 300;
+  line-height: 0.78;
+  color: var(--stop-color);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-variant-numeric: lining-nums;
+}
+
+.chapter__where {
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  line-height: 1.45;
+  color: var(--muted);
+  margin-bottom: 0.9rem;
+}
+
+.chapter__title {
+  font-size: var(--step-4);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 600px) {
+  .chapter__opener { grid-template-columns: 1fr; }
+  .chapter__num { margin-bottom: 0.5rem; }
+}
+
+/* Time bands: a gradient that shows time passing as you scroll through it */
+.band {
+  min-height: 90vh;
+  display: flex;
+  align-items: flex-end;
+  padding-top: 10rem;
+  padding-bottom: clamp(4rem, 10vh, 7rem);
+}
+.band__inner {
+  width: 100%;
+  max-width: calc(var(--measure) + 14rem);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+.band__big {
+  font-size: var(--step-5);
+  font-weight: 460;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  max-width: 16ch;
+}
+.band__small {
+  font-size: var(--step-1);
+  line-height: 1.5;
+  max-width: 30rem;
+  margin-top: 1.25rem;
+}
+
+/* morning (dough) → bakery (crust) */
+.band--rewind {
+  background-image: linear-gradient(to bottom, var(--dough) 0%, #B98F68 26%, #5E3D29 48%, var(--crust) 70%);
+}
+/* 3 a.m. (night) → first light (dawn) */
+.band--dawn {
+  background-image: linear-gradient(to bottom, var(--night) 0%, #3D2D2C 22%, #85625C 42%, #CDA894 62%, var(--dawn) 84%);
+}
+/* afternoon (golden) → night, and around again */
+.band--dusk {
+  background-image: linear-gradient(to bottom, var(--golden) 0%, #D7A26A 22%, #7B4A30 46%, #3A2519 64%, var(--night) 82%);
+}
+
+
+/* -----------------------------------------------------------------------------
+   8. PROLOGUE PIECES
+   -------------------------------------------------------------------------- */
+.chapter--prologue { padding-top: var(--section-space); }
+
+.question {
+  grid-column: wide !important;
+  margin-block: 3.5rem 2.5rem !important;
+  font-size: var(--step-3);
+  font-weight: 420;
+  font-style: italic;
+  line-height: 1.24;
+  color: var(--cinnamon);
+  text-wrap: pretty;
+}
+.question__label {
+  display: block;
+  margin-bottom: 0.9rem;
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  font-weight: 600;
+  font-style: normal;
+  color: var(--muted);
+}
+
+.meanings {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.1rem;
+}
+.meanings li {
+  padding-left: 1.1rem;
+  border-left: 3px solid var(--voice-color);
+  font-size: var(--step-1);
+  line-height: 1.45;
+}
+
+.cast {
+  margin-top: 3.5rem !important;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+.cast h3 { font-size: var(--step-1); margin-bottom: 1.25rem; }
+.cast__list {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1rem 2rem;
+}
+.cast__list > div {
+  padding-left: 1rem;
+  border-left: 3px solid var(--voice-color);
+}
+.cast__list dt {
+  font-family: var(--font-sans);
+  font-weight: 650;
+  font-size: 0.9375rem;
+  color: var(--voice-color);
+}
+.cast__list dd {
+  margin: 0.15rem 0 0;
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  line-height: 1.45;
+  color: var(--muted);
+}
+.cast__note {
+  margin-top: 1.5rem;
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+
+/* -----------------------------------------------------------------------------
+   9. PHOTOS, VIDEO, AND MISSING-MEDIA PLACEHOLDERS
+   Set the shape of a photo with style="--ratio: 3 / 2" on .media__frame.
+   Add style="--fit: contain" to show a whole photo without cropping.
+   -------------------------------------------------------------------------- */
+.media { margin: 0; }
+.flow > .media { margin-block: clamp(2.5rem, 6vh, 4rem); }
+
+.media__frame {
+  position: relative;
+  aspect-ratio: var(--ratio, 3 / 2);
+  overflow: hidden;
+  background: color-mix(in srgb, var(--fg) 7%, transparent);
+  border-radius: 2px;
+}
+.media__frame > img,
+.media__frame > video,
+.media__frame > iframe {
+  width: 100%;
+  height: 100%;
+  object-fit: var(--fit, cover);
+  border: 0;
+  background: #000;
+}
+.media__frame > img { background: transparent; }
+
+.media figcaption {
+  margin-top: 0.7rem;
+  max-width: 42rem;
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+/* The bakery video is silent, so hide its volume controls (main.js also keeps it muted) */
+.media__frame video::-webkit-media-controls-mute-button,
+.media__frame video::-webkit-media-controls-volume-slider,
+.media__frame video::-webkit-media-controls-volume-control-container { display: none; }
+
+/* Shown automatically by main.js when a file is missing */
+.media__frame.is-missing > img,
+.media__frame.is-missing > video { visibility: hidden; }
+.media__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 1.25rem 1.5rem;
+  border: 2px dashed var(--rule-strong);
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 14px, color-mix(in srgb, var(--fg) 5%, transparent) 14px 15px);
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  line-height: 1.4;
+  color: var(--muted);
+}
+.media__placeholder strong { color: var(--fg); font-size: 0.9375rem; }
+.media__placeholder code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8125rem;
+  color: var(--fg);
+  word-break: break-all;
+}
+
+
+/* -----------------------------------------------------------------------------
+   10. VOICES (INTERVIEW QUOTES)
+   Use data-voice="maker | fern | student" to color a quote by speaker.
+   Add class "voice--feature" for a large, full-width quote.
+   -------------------------------------------------------------------------- */
+.voice { margin: 0; }
+.flow > .voice { margin-block: 1.75rem; }
+
+.voice blockquote {
+  margin: 0;
+  padding-left: 1.2rem;
+  border-left: 3px solid var(--voice-color);
+}
+.voice blockquote p {
+  font-size: var(--step-1);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+.voice figcaption {
+  margin-top: 0.55rem;
+  padding-left: 1.2rem;
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  line-height: 1.35;
+  color: var(--muted);
+}
+.voice__name {
+  font-weight: 650;
+  color: var(--voice-color);
+}
+
+/* Large quotes */
+.flow > .voice--feature {
+  grid-column: wide;
+  margin-block: clamp(3rem, 8vh, 5rem);
+}
+.voice--feature blockquote {
+  padding-left: 0;
+  border-left: 0;
+}
+.voice--feature blockquote p {
+  font-size: var(--step-3);
+  font-style: normal;
+  font-weight: 420;
+  line-height: 1.22;
+  letter-spacing: -0.005em;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  text-indent: -0.42em;   /* hangs the opening quotation mark in the margin */
+}
+.voice--feature figcaption {
+  margin-top: 1.1rem;
+  padding-left: 0;
+}
+.voice--feature figcaption::before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: 2.25rem;
+  height: 3px;
+  margin: -2px 0.75rem 0 0;
+  background: var(--voice-color);
+}
+
+
+/* -----------------------------------------------------------------------------
+   11. FIELD NOTES (GRAPH PAPER)
+   My own reflections, set on engineering paper.
+   -------------------------------------------------------------------------- */
+.field-note {
+  --grid: rgba(58, 108, 132, 0.13);
+  grid-column: text-start / wide-end !important;
+  margin-block: clamp(2.5rem, 6vh, 4rem) !important;
+  padding: 1.75rem 1.75rem 1.9rem;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 14px 14px;
+  border: 1px solid rgba(58, 108, 132, 0.32);
+  color: var(--graphite);
+}
+.field-note__label {
+  margin-bottom: 0.8rem !important;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 650;
+  color: #2F6077;
+}
+.field-note p {
+  font-size: var(--step-0);
+  font-style: italic;
+  line-height: 1.65;
+}
+.field-note p + p { margin-top: 0.9em; }
+
+/* The life-cycle flow I first planned (prologue) */
+.lifecycle {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.9rem;
+  margin: 1.25rem 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #2F6077;
+}
+.lifecycle li {
+  position: relative;
+  padding: 0.35rem 0.65rem;
+  border: 1.5px solid currentColor;
+  background: var(--paper);
+}
+.lifecycle li + li::before {
+  content: "";
+  position: absolute;
+  left: -1.6rem;
+  top: 50%;
+  width: 1.2rem;
+  border-top: 1.5px solid currentColor;
+}
+.lifecycle li + li::after {
+  content: "";
+  position: absolute;
+  left: -0.55rem;
+  top: calc(50% - 4px);
+  border: 4px solid transparent;
+  border-left: 6px solid currentColor;
+  border-right: 0;
+}
+
+
+/* -----------------------------------------------------------------------------
+   12. SCROLLYTELLING
+   A sticky graphic with text steps scrolling beside it (desktop)
+   or over it (phones). main.js marks the step in the middle of the screen.
+   -------------------------------------------------------------------------- */
+.scrolly {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  width: 100%;
+  max-width: 78rem;
+  margin: clamp(3rem, 8vh, 5rem) auto !important;
+  padding-inline: var(--gutter);
+}
+
+.scrolly__graphic {
+  position: sticky;
+  top: 6vh;
+  align-self: start;
+  height: 88vh;
+  display: flex;
+  align-items: center;
+}
+.diagram { margin: 0; width: 100%; }
+.diagram__note {
+  margin-top: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.scrolly__steps { padding-block: 20vh 30vh; }
+.scrolly__step {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.js .scrolly__step .step { transition: opacity 0.45s ease; }
+.js .scrolly__step:not(.is-active) .step { opacity: 0.4; }
+.step h3 { margin-bottom: 0.75rem; }
+.step > * + * { margin-top: 1rem; }
+.step .media { margin-top: 1.5rem; }
+.step .voice { margin-block: 1.4rem; }
+
+.reading {
+  display: grid;
+  gap: 0.3rem;
+  margin-top: 1.25rem !important;
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  line-height: 1.4;
+  color: var(--muted);
+}
+.reading span { position: relative; padding-left: 1rem; }
+.reading span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.42em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.reading .reading__meaning { color: var(--fg); }
+.reading .reading__meaning::before { background: var(--c-maker); }
+.reading b { font-weight: 650; }
+
+/* Phones: graphic pinned at the top, steps slide over it */
+@media (max-width: 899.98px) {
+  .scrolly { display: block; }
+  .scrolly__graphic {
+    top: var(--topbar-h);
+    z-index: 2;
+    height: auto;
+    padding-block: 0.75rem 0.5rem;
+    background: var(--bg);
+    box-shadow: 0 14px 18px -14px rgba(0, 0, 0, 0.35);
+  }
+  .scrolly__graphic svg { max-height: 34vh; margin-inline: auto; }
+  .diagram__note { text-align: center; }
+  .scrolly__steps { position: relative; z-index: 1; padding-block: 6vh 30vh; }
+  .scrolly__step { min-height: 70vh; }
+  .js .scrolly__step:not(.is-active) .step { opacity: 0.45; }
+}
+
+
+/* -----------------------------------------------------------------------------
+   13. DOUGH DIAGRAM (CHAPTER 2)
+   The SVG's data-step attribute (1–4) decides what is visible.
+   -------------------------------------------------------------------------- */
+.lam { width: 100%; height: auto; max-height: 72vh; overflow: visible; }
+
+.lam g, .lam path, .lam text {
+  transition:
+    opacity 0.7s ease,
+    transform 1s cubic-bezier(0.3, 0.7, 0.2, 1),
+    fill 0.8s ease,
+    stroke-dashoffset 1.4s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.lam-label {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 600;
+  fill: var(--muted);
+}
+.lam-label--trim { fill: var(--glaze); }
+.lam-label--away { fill: var(--fg); }
+
+.lam-croissants polygon {
+  fill: #EBC98C;
+  stroke: #5A3420;
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+  stroke-linejoin: round;
+}
+.lam-trims { fill: url(#hatch); stroke: #F4C57A; stroke-width: 1.5; }
+
+.lam-bun__base { fill: #E6C185; }
+.lam-bun__swirl {
+  fill: none;
+  stroke: #8A4520;
+  stroke-width: 13;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.lam-icing {
+  fill: none;
+  stroke: #FFF6E6;
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+/* Everything after step 1 starts hidden */
+.lam .lam-croissants,
+.lam .lam-trims,
+.lam .lam-label--trim,
+.lam .lam-label--away,
+.lam .lam-bun,
+.lam .lam-icing { opacity: 0; }
+
+/* Step 2: croissants cut, trimmings highlighted */
+.lam[data-step="2"] .lam-croissants,
+.lam[data-step="2"] .lam-trims,
+.lam[data-step="2"] .lam-label--trim { opacity: 1; }
+
+/* Step 3: croissants leave; trimmings gather into a spiral */
+.lam[data-step="3"] .lam-slab,
+.lam[data-step="4"] .lam-slab { opacity: 0; }
+.lam[data-step="3"] .lam-croissants { opacity: 0.4; transform: translate(150px, -150px) scale(0.32); }
+.lam[data-step="3"] .lam-label--away { opacity: 1; }
+.lam[data-step="3"] .lam-trims { opacity: 0; transform: scale(0.2); }
+.lam[data-step="3"] .lam-bun,
+.lam[data-step="4"] .lam-bun { opacity: 1; }
+.lam[data-step="3"] .lam-bun__swirl,
+.lam[data-step="4"] .lam-bun__swirl { stroke-dashoffset: 0; }
+
+/* Step 4: baked and iced */
+.lam[data-step="4"] .lam-croissants { opacity: 0; transform: translate(150px, -150px) scale(0.32); }
+.lam[data-step="4"] .lam-trims { transform: scale(0.2); }
+.lam[data-step="4"] .lam-bun__base { fill: #C98A4B; }
+.lam[data-step="4"] .lam-icing { opacity: 1; stroke-dashoffset: 0; }
+
+
+/* -----------------------------------------------------------------------------
+   14. DELIVERY MAP (CHAPTER 4)
+   -------------------------------------------------------------------------- */
+.route-map { width: 100%; height: auto; max-height: 70vh; overflow: visible; }
+
+.map-state {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  fill: var(--muted);
+}
+.map-river {
+  fill: none;
+  stroke: var(--river);
+  stroke-width: 30;
+  opacity: 0.75;
+}
+.map-river-label {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-style: italic;
+  fill: #4E7472;
+}
+.map-route-faint {
+  fill: none;
+  stroke: var(--rule-strong);
+  stroke-width: 3;
+  stroke-dasharray: 2 7;
+  stroke-linecap: round;
+}
+.map-route-drawn {
+  fill: none;
+  stroke: var(--c-road);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.map-route-measure { fill: none; stroke: none; }
+
+.map-place circle { stroke: var(--bg); stroke-width: 4; }
+.map-place--maker circle { fill: var(--c-maker); }
+.map-place--fern circle { fill: var(--c-fern); }
+.map-place__name {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 650;
+  fill: var(--fg);
+}
+.map-place__sub {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  fill: var(--muted);
+}
+
+.map-van__body { fill: var(--fg); }
+.map-van__window { fill: var(--bg); }
+.map-van__wheel { fill: var(--fg); stroke: var(--bg); stroke-width: 2; }
+
+
+/* -----------------------------------------------------------------------------
+   15. 10,000 CINNAMON BUNS (CHAPTER 3)
+   -------------------------------------------------------------------------- */
+.repetition { margin-block: 0 clamp(3rem, 8vh, 5rem) !important; }
+.repetition svg { width: 100%; height: auto; }
+.repetition__caption {
+  margin-top: 0.8rem;
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+
+/* -----------------------------------------------------------------------------
+   16. RELAY, LEDGER, AND CLOSING-SHIFT LIST (CHAPTER 4)
+   -------------------------------------------------------------------------- */
+/* Relay of hands */
+.relay { margin-block: 2rem 1rem !important; }
+.relay__label {
+  margin-bottom: 1rem;
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--muted);
+}
+.relay__list {
+  list-style: none;
+  counter-reset: relay;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+.relay__list li {
+  counter-increment: relay;
+  position: relative;
+  padding: 2.1rem 0.5rem 0 0;
+  line-height: 1.3;
+  color: var(--voice-color);
+}
+.relay__list li::before {
+  content: counter(relay);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--voice-color);
+  color: var(--bg);
+  font-size: 0.8125rem;
+}
+.relay__list li::after {
+  content: "";
+  position: absolute;
+  top: 0.8rem;
+  left: 1.6rem;
+  right: 0;
+  border-top: 2px solid var(--rule-strong);
+}
+.relay__list li:last-child::after { display: none; }
+.relay__next { opacity: 0.85; }
+.relay__next::before { background: transparent !important; color: var(--voice-color) !important; border: 2px dashed var(--voice-color); }
+
+@media (max-width: 720px) {
+  .relay__list { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 1.25rem; }
+  .relay__list li:nth-child(3)::after { display: none; }
+}
+
+/* Ledger */
+.ledger-wrap {
+  margin-block: 2.5rem !important;
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+}
+.ledger {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+.ledger caption {
+  text-align: left;
+  padding: 1.25rem 1.25rem 0.75rem;
+}
+.ledger__title {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: var(--step-2);
+  font-weight: 560;
+  color: var(--fg);
+}
+.ledger__note {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+.ledger th, .ledger td {
+  padding: 0.8rem 1.25rem;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid var(--rule);
+}
+.ledger thead th {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--muted);
+  border-top: 2px solid var(--rule-strong);
+}
+.ledger tbody th { width: 34%; font-weight: 650; color: var(--fg); }
+
+@media (max-width: 560px) {
+  .ledger thead { display: none; }
+  .ledger tbody tr { display: block; padding: 0.75rem 1.25rem; border-top: 1px solid var(--rule); }
+  .ledger tbody th, .ledger tbody td { display: block; width: auto; padding: 0; border: 0; }
+  .ledger tbody td { margin-top: 0.2rem; }
+}
+
+/* Closing-shift list (plain to-do list) */
+.todo {
+  list-style: none;
+  margin: 1.5rem 0 !important;
+  padding: 0.15rem 0 0.15rem 1.2rem;
+  border-left: 3px solid var(--c-fern);
+}
+.todo li { position: relative; padding-left: 1.6rem; line-height: 1.4; }
+.todo li + li { margin-top: 0.55rem; }
+.todo li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.4em;
+  width: 0.7em;
+  height: 0.7em;
+  border: 2px solid var(--c-fern);   /* an empty to-do box */
+}
+
+
+/* -----------------------------------------------------------------------------
+   17. EXCHANGE, CHORUS, AND FULL CIRCLE (CHAPTER 5)
+   -------------------------------------------------------------------------- */
+/* Exchange: two sides of the river */
+.exchange {
+  position: relative;
+  margin-block: clamp(3rem, 8vh, 5rem) !important;
+}
+.exchange__note {
+  max-width: 34rem;
+  margin-bottom: 2.25rem;
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  line-height: 1.45;
+  color: var(--muted);
+}
+.exchange__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.5rem 4.5rem;
+}
+.exchange__row + .exchange__row { margin-top: 3rem; }
+.exchange__row > :nth-child(2) { margin-top: 4rem; }
+.exchange__row::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 14px;
+  transform: translateX(-50%);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='28'%3E%3Cpath d='M7 0 C13 7 13 7 7 14 S1 21 7 28' fill='none' stroke='%239DBDBA' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: repeat-y;
+}
+@media (max-width: 760px) {
+  .exchange__row { grid-template-columns: 1fr; }
+  .exchange__row::before { display: none; }
+  .exchange__row > :nth-child(2) { margin-top: 0; margin-left: 1.5rem; }
+}
+
+/* Chorus: a cluster of short quotes */
+.chorus {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1.5rem 2rem;
+  margin-block: 2rem !important;
+}
+
+/* Full circle */
+.full-circle {
+  margin-block: clamp(4rem, 10vh, 7rem) !important;
+  padding: clamp(3rem, 8vh, 5rem) var(--gutter);
+  border-block: 1px solid var(--rule-strong);
+}
+.full-circle__intro {
+  max-width: var(--measure);
+  margin: 0 auto 3rem;
+  font-size: var(--step-1);
+  text-align: center;
+}
+.full-circle__pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 3rem minmax(0, 1fr);
+  gap: 1.5rem;
+  max-width: 64rem;
+  margin: 0 auto;
+  align-items: center;
+}
+.voice--circle blockquote { padding: 0; border: 0; }
+.voice--circle blockquote p {
+  font-size: var(--step-3);
+  font-style: normal;
+  font-weight: 440;
+  line-height: 1.2;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+.voice--circle figcaption { padding: 0; margin-top: 1rem; }
+.full-circle__pair > .voice:first-child { text-align: right; }
+.full-circle__river {
+  align-self: stretch;
+  min-height: 10rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='28'%3E%3Cpath d='M7 0 C13 7 13 7 7 14 S1 21 7 28' fill='none' stroke='%239DBDBA' stroke-width='2.5'/%3E%3C/svg%3E");
+  background-repeat: repeat-y;
+  background-position: center top;
+}
+@media (max-width: 760px) {
+  .full-circle__pair { grid-template-columns: 1fr; }
+  .full-circle__pair > .voice:first-child { text-align: left; }
+  .full-circle__river {
+    min-height: 0;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14'%3E%3Cpath d='M0 7 C7 1 7 1 14 7 S21 13 28 7' fill='none' stroke='%239DBDBA' stroke-width='2.5'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: left center;
+  }
+}
+
+
+/* -----------------------------------------------------------------------------
+   18. APPENDIX, REFERENCES, CITATION POPOVERS, FOOTER
+   -------------------------------------------------------------------------- */
+.appendix { padding-block: var(--section-space) 4rem; }
+.appendix p, .appendix li { font-size: var(--step-0); }
+.section-title--refs { margin-top: 2.5em !important; font-size: var(--step-3); }
+
+.references {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.references li {
+  padding-left: 2em;
+  text-indent: -2em;   /* Chicago-style hanging indent */
+  line-height: 1.55;
+  transition: background-color 0.4s ease;
+}
+.references li + li { margin-top: 0.75em; }
+.references a { word-break: break-word; }
+.references li.is-flash { background: color-mix(in srgb, var(--glaze) 30%, transparent); }
+
+/* In-text citation buttons, e.g. (Crowther 2018) */
+.cite {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline dotted;
+  text-decoration-color: var(--link);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.2em;
+}
+.cite:hover { color: var(--link); }
+
+/* Citation popover (bottom-right card) */
+.ref-pop {
+  position: fixed;
+  inset: auto 1rem 1rem auto;
+  margin: 0;
+  width: min(26rem, calc(100vw - 2rem));
+  padding: 1rem 1.25rem 1.1rem;
+  border: 1px solid rgba(46, 30, 21, 0.28);
+  border-radius: 4px;
+  background: var(--icing);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  box-shadow: 0 18px 40px -18px rgba(44, 26, 17, 0.55);
+}
+.ref-pop::backdrop { background: transparent; }
+.ref-pop a {
+  display: inline-block;
+  margin-top: 0.6rem;
+  color: var(--cinnamon);
+  font-weight: 600;
+}
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--rule); }
+.site-footer__inner {
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 2.5rem var(--gutter) 3rem;
+  font-family: var(--font-sans);
+  font-size: var(--step--1);
+  line-height: 1.55;
+  color: var(--muted);
+}
+.site-footer__inner > * + * { margin-top: 0.6rem; }
+.site-footer__title {
+  font-family: var(--font-serif);
+  font-size: var(--step-1);
+  color: var(--fg);
+}
+
+
+/* -----------------------------------------------------------------------------
+   19. UTILITIES, REDUCED MOTION, PRINT
+   -------------------------------------------------------------------------- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@media print {
+  .route, .band, .hero__cue, .repetition, .skip-link, .ref-pop, .media__placeholder { display: none !important; }
+  .hero, .chapter, .appendix, .site-footer { background: #fff !important; color: #000 !important; padding-left: 0 !important; }
+  .scrolly { display: block; }
+  .scrolly__graphic { position: static; height: auto; }
+  .scrolly__step { min-height: 0; padding-block: 1rem; }
+  .js .scrolly__step .step { opacity: 1 !important; }
+  .field-note { background: #fff; }
+}
+
+/* =============================================================================
+   INTERVIEW EXCERPTS
+   Paste this whole block at the very bottom of css/styles.css (after the
+   @media print section). It reuses the site's colors, so each excerpt is
+   automatically tinted in its speaker's color and adapts to the time of day
+   of whatever chapter it sits in.
+
+     data-voice="maker"    -> amber (King Arthur Baking)
+     data-voice="student"  -> rust  (a Dartmouth student)
+     data-voice="fern"     -> green (the Fern)
+   ========================================================================== */
+
+/* The card ------------------------------------------------------------------ */
+.interview-dialogue {
+  --iv: var(--voice-color, var(--link));                      /* speaker's color */
+  --iv-tint: color-mix(in srgb, var(--iv) 10%, var(--bg));    /* soft wash of it */
+  --lab: 6.5rem;    /* width of the speaker-name column */
+  --gap: 1.5rem;    /* space between names and words */
+
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.5rem, 3.5vw, 2.4rem) clamp(1.25rem, 3.5vw, 2.5rem) clamp(1.35rem, 3vw, 2.1rem);
+  background-color: var(--iv-tint);
+  border: 1px solid color-mix(in srgb, var(--iv) 30%, transparent);
+  border-top: 6px solid var(--iv);
+  border-radius: 3px;
+  box-shadow: 0 22px 40px -30px rgba(44, 26, 17, 0.45);
+  color: var(--fg);
+}
+.flow > .interview-dialogue {
+  grid-column: wide;                              /* wider than body text */
+  margin-block: clamp(2.5rem, 6vh, 4rem);
+}
+
+/* A big, faint opening quotation mark behind the title */
+.interview-dialogue::before {
+  content: "\201C";
+  content: "\201C" / "";                          /* hidden from screen readers */
+  position: absolute;
+  top: -0.1em;
+  right: 0.1em;
+  font-family: var(--font-serif);
+  font-size: clamp(7rem, 16vw, 11rem);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--iv);
+  opacity: 0.13;
+  pointer-events: none;
+}
+
+/* Header: "From my interview with…" + title ---------------------------------- */
+.interview-dialogue__head {
+  position: relative;
+  max-width: 36rem;
+  margin-bottom: 1.5rem;
+}
+.interview-dialogue__kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0 0 0.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 650;
+  line-height: 1.3;
+  color: var(--iv);
+}
+/* tiny sound-wave icon */
+.interview-dialogue__kicker::before {
+  content: "";
+  flex: none;
+  width: 1.4rem;
+  height: 0.9rem;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 14'%3E%3Cg fill='%23000'%3E%3Crect x='0' y='5' width='2.4' height='4' rx='1.2'/%3E%3Crect x='4.4' y='2' width='2.4' height='10' rx='1.2'/%3E%3Crect x='8.8' y='0' width='2.4' height='14' rx='1.2'/%3E%3Crect x='13.2' y='3' width='2.4' height='8' rx='1.2'/%3E%3Crect x='17.6' y='5' width='2.4' height='4' rx='1.2'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 14'%3E%3Cg fill='%23000'%3E%3Crect x='0' y='5' width='2.4' height='4' rx='1.2'/%3E%3Crect x='4.4' y='2' width='2.4' height='10' rx='1.2'/%3E%3Crect x='8.8' y='0' width='2.4' height='14' rx='1.2'/%3E%3Crect x='13.2' y='3' width='2.4' height='8' rx='1.2'/%3E%3Crect x='17.6' y='5' width='2.4' height='4' rx='1.2'/%3E%3C/g%3E%3C/svg%3E") center / contain no-repeat;
+}
+.interview-dialogue__title {
+  margin: 0;
+  font-size: clamp(1.45rem, 1.15rem + 1.2vw, 2rem);
+  font-weight: 560;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+
+/* The conversation: names on the left, words on the right, a rail between ---- */
+.interview-dialogue__turn {
+  --rail-img: linear-gradient(var(--iv), var(--iv));
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--lab) minmax(0, 1fr);
+  column-gap: var(--gap);
+  margin: 0;
+  padding-block: 0.55rem;
+  background: var(--rail-img) calc(var(--lab) + var(--gap) / 2 - 1.5px) 0 / 3px 100% no-repeat;
+}
+.interview-dialogue__turn strong {
+  padding-top: 0.32em;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--iv);
+}
+/* a dot where each speaker begins */
+.interview-dialogue__turn::before {
+  content: "";
+  position: absolute;
+  top: 1.05rem;
+  left: calc(var(--lab) + var(--gap) / 2 - 5px);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--iv);
+  box-shadow: 0 0 0 3px var(--iv-tint);
+}
+
+/* The guest: larger serif words, solid rail in the speaker's color */
+.interview-dialogue__turn--other {
+  font-size: clamp(1.06rem, 1rem + 0.3vw, 1.2rem);
+  line-height: 1.55;
+}
+
+/* Me (the interviewer): smaller, quieter sans-serif, dashed gray rail */
+.interview-dialogue__turn--martin {
+  --rail-img: repeating-linear-gradient(to bottom, color-mix(in srgb, var(--fg) 32%, transparent) 0 5px, transparent 5px 10px);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.interview-dialogue__turn--martin strong { color: var(--muted); }
+.interview-dialogue__turn--martin::before {
+  width: 8px;
+  height: 8px;
+  left: calc(var(--lab) + var(--gap) / 2 - 4px);
+  background: var(--iv-tint);
+  border: 2px solid var(--muted);
+  box-shadow: none;
+}
+
+/* Back-to-back turns by the same person read as one answer:
+   the name and dot show only once. */
+.interview-dialogue__turn--other + .interview-dialogue__turn--other,
+.interview-dialogue__turn--martin + .interview-dialogue__turn--martin { padding-top: 0.1rem; }
+.interview-dialogue__turn--other + .interview-dialogue__turn--other::before,
+.interview-dialogue__turn--martin + .interview-dialogue__turn--martin::before { display: none; }
+.interview-dialogue__turn--other + .interview-dialogue__turn--other strong,
+.interview-dialogue__turn--martin + .interview-dialogue__turn--martin strong { visibility: hidden; }
+
+/* Phones: names sit above the words, rail moves to the left edge */
+@media (max-width: 640px) {
+  .interview-dialogue { --lab: 0rem; --gap: 0rem; }
+  .interview-dialogue__turn {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0.1rem;
+    padding-left: 1.15rem;
+    background-position: 0 0;
+  }
+  .interview-dialogue__turn::before { left: -3.5px; top: 0.95rem; }
+  .interview-dialogue__turn--martin::before { left: -2.5px; }
+  .interview-dialogue__turn--other + .interview-dialogue__turn--other strong,
+  .interview-dialogue__turn--martin + .interview-dialogue__turn--martin strong { display: none; }
+}
+
+/* Gentle reveal: each turn eases in as it scrolls into view.
+   (Only active if you also paste the small JavaScript block.) */
+@media (prefers-reduced-motion: no-preference) {
+  .interview-dialogue.is-armed .interview-dialogue__turn {
+    transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .interview-dialogue.is-armed .interview-dialogue__turn:not(.is-in) {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@media print {
+  .interview-dialogue {
+    break-inside: avoid;
+    background: #fff;
+    color: #000;
+    box-shadow: none;
+    border-color: #888;
+  }
+  .interview-dialogue__turn--martin { color: #333; }
+  .interview-dialogue.is-armed .interview-dialogue__turn { opacity: 1 !important; transform: none !important; }
+}
